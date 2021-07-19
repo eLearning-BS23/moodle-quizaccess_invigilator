@@ -183,7 +183,7 @@ class quizaccess_invigilator_external extends external_api
 
         // Extra checks so only users with permissions can view other users reports.
         if ($USER->id != $user->id) {
-            require_capability('quizaccess/proctoring:viewreport', $context);
+            require_capability('quizaccess/invigilator:viewreport', $context);
         }
     }
 
@@ -198,7 +198,7 @@ class quizaccess_invigilator_external extends external_api
         $image = imagecreatefromstring($data);
         imagefilledrectangle($image, 0, 0, 120, 22, imagecolorallocatealpha($image, 255, 255, 255, 60));
         imagefttext($image, 9, 0, 4, 16, imagecolorallocate($image, 0, 0, 0),
-            $CFG->dirroot . '/mod/quiz/accessrule/proctoring/assets/Roboto-Light.ttf', date('d-m-Y H:i:s') );
+            $CFG->dirroot . '/mod/quiz/accessrule/invigilator/assets/Roboto-Light.ttf', date('d-m-Y H:i:s') );
         ob_start();
         imagepng($image);
         $data = ob_get_clean();

@@ -49,3 +49,12 @@ $string['screenhtml'] = '<span>
                          <span id="invigilator-log-screen" style="display:none;"></span>';
 $string['sharescreen'] = 'Allow screen share to continue';
 $string['sharescreenbtnlabel'] = 'Share screen';
+$string['quizaccess_invigilator_label'] = 'Invigilator';
+$string['invigilatorreports'] = 'Invigilator Reports';
+$string['invigilatorreportsdesc'] = 'Invigilator Reports shows screenshots taken during quiz';
+$string['dateverified'] = 'Date';
+$string['actions'] = 'Action';
+$string['name'] = 'Name';
+$string['screenshot'] = 'Screenshot';
+$string['notpermissionreport'] = 'You are not permitted to see this report';
+$string['picturesusedreport'] = 'Screenshots';

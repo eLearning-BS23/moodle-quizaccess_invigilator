@@ -63,8 +63,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
             defined("DEBUG_BACKTRACE_IGNORE_ARGS")
                 ? DEBUG_BACKTRACE_IGNORE_ARGS
                 : FALSE);
-        $top_frame = array_pop($backtrace);
-        return $top_frame['file'];
+        $topframe = array_pop($backtrace);
+        return $topframe['file'];
     }
 
     /**
