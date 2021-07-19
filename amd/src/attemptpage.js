@@ -1,5 +1,5 @@
 define(['jquery', 'core/ajax', 'core/notification'],
-    function($, Ajax, Notification) {
+    function($) {
         return {
             setup: function(props) {
                 // console.log('attemptpage/setup called');
@@ -42,7 +42,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                 });
                 return true;
             },
-            init: function(props) {
+            init: function() {
                 // console.log('attemptpage/init called');
                 return true;
             }
