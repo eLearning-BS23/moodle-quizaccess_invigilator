@@ -143,6 +143,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
      * @throws coding_exception
      */
     public function get_courseid_cmid_from_preflight_form(){
+
+
         $response = array();
         $response['courseid'] = $this->quiz->course;
         $response['quizid'] = $this->quiz->id;
@@ -308,9 +310,12 @@ class quizaccess_invigilator extends quiz_access_rule_base
             // Get Screenshot Delay and Image Width.
             $screenshotdelay = get_invigilator_settings('screenshotdelay');
             $screenshotwidth = get_invigilator_settings('screenshotwidth');
+            $quizurl = new moodle_url("/mod/quiz/view.php",array("id"=> $this->quiz->cmid));
+
             $record = new stdClass();
             $record->screenshotdelay = $screenshotdelay;
             $record->screenshotwidth = $screenshotwidth;
+            $record->quizurl = $quizurl->__toString();
             $page->requires->js_call_amd('quizaccess_invigilator/attemptpage', 'setup', array($record));
         }
     }
