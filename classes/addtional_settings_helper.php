@@ -23,132 +23,131 @@
  */
 
 class addtional_settings_helper {
-//    /**
-//     * Search for specific user invigilator log.
-//     *
-//     * @param string $username The username of a user.
-//     * @param string $email The email of the user.
-//     * @param string $coursename The coursename.
-//     * @param string $quizname The quizname for the specific course.
-//     * @return array
-//     */
-//    public function search(
-//        $username,
-//        $email,
-//        $coursename,
-//        $quizname
-//    ) {
-//        global $DB;
-//        $params = array();
-//        $whereclausearray1 = array();
-//        $whereclausearray2 = array();
-//
-//        if ($username !== "") {
-//            $namesplit = explode(" ", $username);
-//            if (count($namesplit) > 1) {
-//                $namelike1 = "(".$DB->sql_like('u.firstname', ':firstnamelike', false).")";
-//                $namelike2 = "(".$DB->sql_like('u.lastname', ':lastnamelike', false).")";
-//                array_push($whereclausearray1, $namelike1);
-//                array_push($whereclausearray2, $namelike2);
-//
-//                $params['firstnamelike'] = $namesplit[0];
-//                $params['lastnamelike'] = $namesplit[1];
-//            } else {
-//                $namelike1 = "(".$DB->sql_like('u.firstname', ':firstnamelike', false).")";
-//                $namelike2 = "(".$DB->sql_like('u.lastname', ':lastnamelike', false).")";
-//                array_push($whereclausearray1, $namelike1);
-//                array_push($whereclausearray2, $namelike2);
-//
-//                $params['firstnamelike'] = $username;
-//                $params['lastnamelike'] = $username;
-//            }
-//        }
-//
-//        if ($email !== "") {
-//            if ($username !== "") {
-//                $emaillike1 = " ( ".$DB->sql_like('u.email', ':emaillike1', false)." ) ";
-//                $emaillike2 = " ( ".$DB->sql_like('u.email', ':emaillike2', false)." ) ";
-//                array_push($whereclausearray1, $emaillike1);
-//                array_push($whereclausearray2, $emaillike2);
-//                $params['emaillike1'] = $email;
-//                $params['emaillike2'] = $email;
-//            } else {
-//                $emaillike1 = " ( ".$DB->sql_like('u.email', ':emaillike1', false)." ) ";
-//                array_push($whereclausearray1, $emaillike1);
-//                $params['emaillike1'] = $email;
-//            }
-//        }
-//
-//        if ($coursename !== "") {
-//            if ($username !== "") {
-//                $coursenamelike1 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike1', false)." ) ";
-//                $coursenamelike2 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike2', false)." ) ";
-//                array_push($whereclausearray1, $coursenamelike1);
-//                array_push($whereclausearray2, $coursenamelike2);
-//                $params['coursenamelike1'] = $coursename;
-//                $params['coursenamelike2'] = $coursename;
-//            } else {
-//                $coursenamelike1 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike1', false)." ) ";
-//                array_push($whereclausearray1, $coursenamelike1);
-//                $params['coursenamelike1'] = $coursename;
-//            }
-//        }
-//
-//        if ($quizname !== "") {
-//            if ($username !== "") {
-//                $quiznamelike1 = " ( ".$DB->sql_like('q.name', ':quiznamelike1', false)." ) ";
-//                $quiznamelike2 = " ( ".$DB->sql_like('q.name', ':quiznamelike2', false)." ) ";
-//                array_push($whereclausearray1, $quiznamelike1);
-//                array_push($whereclausearray2, $quiznamelike2);
-//                $params['quiznamelike1'] = $quizname;
-//                $params['quiznamelike2'] = $quizname;
-//            } else {
-//                $quiznamelike1 = " ( ".$DB->sql_like('q.name', ':quiznamelike1', false)." ) ";
-//                array_push($whereclausearray1, $quiznamelike1);
-//                $params['quiznamelike1'] = $quizname;
-//            }
-//        }
-//
-//        $totalclausecount = count($whereclausearray1) + count($whereclausearray2);
-//        $secondclausecount = count($whereclausearray2);
-//
-//        if ($totalclausecount > 0) {
-//            if ($secondclausecount > 0) {
-//                $andjoin1 = implode(" AND ", $whereclausearray1);
-//                $andjoin2 = implode( " AND ", $whereclausearray2);
-//                $whereclause = " (".$andjoin1.") OR (".$andjoin2.") ";
-//            } else {
-//                $andjoin1 = implode(" AND ", $whereclausearray1);
-//                $whereclause = " (".$andjoin1.")";
-//            }
-//        } else {
-//            $sqlexecuted = array();
-//            return $sqlexecuted;
-//        }
-//
-//        $sql = "SELECT
-//            e.id as reportid,
-//            e.userid as studentid,
-//            e.webcampicture as webcampicture,
-//            e.status as status,
-//            e.quizid as quizid,
-//            e.courseid as courseid,
-//            e.timemodified as timemodified,
-//            u.firstname as firstname,
-//            u.lastname as lastname,
-//            u.email as email,
-//            c.fullname as coursename,
-//            q.name as quizname
-//            from  {quizaccess_proctoring_logs} e
-//            INNER JOIN {user} u  ON u.id = e.userid
-//            INNER JOIN {course} c  ON c.id = e.courseid
-//            INNER JOIN {course_modules} cm  ON cm.id = e.quizid
-//            INNER JOIN {quiz} q  ON q.id = cm.instance
-//            WHERE $whereclause";
-//
-//        $sqlexecuted = $DB->get_recordset_sql($sql, $params);
-//        return $sqlexecuted;
-//    }
+    /**
+     * Search for specific user invigilator log.
+     *
+     * @param string $username The username of a user.
+     * @param string $email The email of the user.
+     * @param string $coursename The coursename.
+     * @param string $quizname The quizname for the specific course.
+     * @return array
+     */
+    public function search(
+        $username,
+        $email,
+        $coursename,
+        $quizname
+    ) {
+        global $DB;
+        $params = array();
+        $whereclausearray1 = array();
+        $whereclausearray2 = array();
+
+        if ($username !== "") {
+            $namesplit = explode(" ", $username);
+            if (count($namesplit) > 1) {
+                $namelike1 = "(".$DB->sql_like('u.firstname', ':firstnamelike', false).")";
+                $namelike2 = "(".$DB->sql_like('u.lastname', ':lastnamelike', false).")";
+                array_push($whereclausearray1, $namelike1);
+                array_push($whereclausearray2, $namelike2);
+
+                $params['firstnamelike'] = $namesplit[0];
+                $params['lastnamelike'] = $namesplit[1];
+            } else {
+                $namelike1 = "(".$DB->sql_like('u.firstname', ':firstnamelike', false).")";
+                $namelike2 = "(".$DB->sql_like('u.lastname', ':lastnamelike', false).")";
+                array_push($whereclausearray1, $namelike1);
+                array_push($whereclausearray2, $namelike2);
+
+                $params['firstnamelike'] = $username;
+                $params['lastnamelike'] = $username;
+            }
+        }
+
+        if ($email !== "") {
+            if ($username !== "") {
+                $emaillike1 = " ( ".$DB->sql_like('u.email', ':emaillike1', false)." ) ";
+                $emaillike2 = " ( ".$DB->sql_like('u.email', ':emaillike2', false)." ) ";
+                array_push($whereclausearray1, $emaillike1);
+                array_push($whereclausearray2, $emaillike2);
+                $params['emaillike1'] = $email;
+                $params['emaillike2'] = $email;
+            } else {
+                $emaillike1 = " ( ".$DB->sql_like('u.email', ':emaillike1', false)." ) ";
+                array_push($whereclausearray1, $emaillike1);
+                $params['emaillike1'] = $email;
+            }
+        }
+
+        if ($coursename !== "") {
+            if ($username !== "") {
+                $coursenamelike1 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike1', false)." ) ";
+                $coursenamelike2 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike2', false)." ) ";
+                array_push($whereclausearray1, $coursenamelike1);
+                array_push($whereclausearray2, $coursenamelike2);
+                $params['coursenamelike1'] = $coursename;
+                $params['coursenamelike2'] = $coursename;
+            } else {
+                $coursenamelike1 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike1', false)." ) ";
+                array_push($whereclausearray1, $coursenamelike1);
+                $params['coursenamelike1'] = $coursename;
+            }
+        }
+
+        if ($quizname !== "") {
+            if ($username !== "") {
+                $quiznamelike1 = " ( ".$DB->sql_like('q.name', ':quiznamelike1', false)." ) ";
+                $quiznamelike2 = " ( ".$DB->sql_like('q.name', ':quiznamelike2', false)." ) ";
+                array_push($whereclausearray1, $quiznamelike1);
+                array_push($whereclausearray2, $quiznamelike2);
+                $params['quiznamelike1'] = $quizname;
+                $params['quiznamelike2'] = $quizname;
+            } else {
+                $quiznamelike1 = " ( ".$DB->sql_like('q.name', ':quiznamelike1', false)." ) ";
+                array_push($whereclausearray1, $quiznamelike1);
+                $params['quiznamelike1'] = $quizname;
+            }
+        }
+
+        $totalclausecount = count($whereclausearray1) + count($whereclausearray2);
+        $secondclausecount = count($whereclausearray2);
+
+        if ($totalclausecount > 0) {
+            if ($secondclausecount > 0) {
+                $andjoin1 = implode(" AND ", $whereclausearray1);
+                $andjoin2 = implode( " AND ", $whereclausearray2);
+                $whereclause = " (".$andjoin1.") OR (".$andjoin2.") ";
+            } else {
+                $andjoin1 = implode(" AND ", $whereclausearray1);
+                $whereclause = " (".$andjoin1.")";
+            }
+        } else {
+            $sqlexecuted = array();
+            return $sqlexecuted;
+        }
+
+        $sql = "SELECT
+            e.id as reportid,
+            e.userid as studentid,
+            e.screenshot as screenshot,
+            e.quizid as quizid,
+            e.courseid as courseid,
+            e.timecreated as timecreated,
+            u.firstname as firstname,
+            u.lastname as lastname,
+            u.email as email,
+            c.fullname as coursename,
+            q.name as quizname
+            from  {quizaccess_invigilator_logs} e
+            INNER JOIN {user} u  ON u.id = e.userid
+            INNER JOIN {course} c  ON c.id = e.courseid
+            INNER JOIN {course_modules} cm  ON cm.id = e.cmid
+            INNER JOIN {quiz} q  ON q.id = e.quizid
+            WHERE $whereclause";
+
+        $sqlexecuted = $DB->get_recordset_sql($sql, $params);
+        return $sqlexecuted;
+    }
 
 
 //    /**

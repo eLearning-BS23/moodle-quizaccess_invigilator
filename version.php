@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the quizaccess_proctoring plugin.
+ * Version information for the quizaccess_invigilator plugin.
  *
  * @package    quizaccess_invigilator
  * @copyright  2020 Brain Station 23
