@@ -148,40 +148,7 @@ class addtional_settings_helper {
         $sqlexecuted = $DB->get_recordset_sql($sql, $params);
         return $sqlexecuted;
     }
-
-
-//    /**
-//     * Get all data.
-//     *
-//     *
-//     * @return array
-//     */
-//    public function getAllData () {
-//        global $DB;
-//        $sql = "SELECT
-//        e.id as reportid,
-//        e.userid as studentid,
-//        e.webcampicture as webcampicture,
-//        e.status as status,
-//        e.quizid as quizid,
-//        e.courseid as courseid,
-//        e.timemodified as timemodified,
-//        u.firstname as firstname,
-//        u.lastname as lastname,
-//        u.email as email,
-//        c.fullname as coursename,
-//        q.name as quizname
-//        from  {quizaccess_proctoring_logs} e
-//        INNER JOIN {user} u  ON u.id = e.userid
-//        INNER JOIN {course} c  ON c.id = e.courseid
-//        INNER JOIN {course_modules} cm  ON cm.id = e.quizid
-//        INNER JOIN {quiz} q  ON q.id = cm.instance";
-//
-//        // Prepare data.
-//        $sqlexecuted = $DB->get_recordset_sql($sql);
-//        return $sqlexecuted;
-//    }
-
+    
     /**
      * Delete file.
      *
