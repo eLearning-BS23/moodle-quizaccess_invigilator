@@ -58,3 +58,5 @@ $string['name'] = 'Name';
 $string['screenshot'] = 'Screenshot';
 $string['notpermissionreport'] = 'You are not permitted to see this report';
 $string['picturesusedreport'] = 'Screenshots';
+$string['summarypagedesc'] = 'Summery report shows the number of screenshot each quiz and course have. You can delete all screenshots of a particulart quiz/course.';
+$string['settings:deleteallsuccess'] = 'Screenshots deleted successfully';
