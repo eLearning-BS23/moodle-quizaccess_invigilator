@@ -2,7 +2,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
     function($, Ajax, Notification) {
         return {
             setup: function(props) {
-                console.log('attemptpage/setup called');
+                // console.log('attemptpage/setup called');
                 var quizurl = props.quizurl;
                 function CloseOnParentClose() {
                     if (typeof window.opener != 'undefined' && window.opener !== null) {
@@ -14,8 +14,8 @@ define(['jquery', 'core/ajax', 'core/notification'],
                     }
 
                     var parentWindowURL = window.opener.location.href;
-                    console.log("parenturl", parentWindowURL);
-                    console.log("quizurl", quizurl);
+                    // console.log("parenturl", parentWindowURL);
+                    // console.log("quizurl", quizurl);
 
                     if (parentWindowURL !== quizurl) {
                         window.close();
@@ -43,7 +43,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                 return true;
             },
             init: function(props) {
-                console.log('attemptpage/init called');
+                // console.log('attemptpage/init called');
                 return true;
             }
         };

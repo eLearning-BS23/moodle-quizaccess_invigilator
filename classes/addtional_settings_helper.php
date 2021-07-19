@@ -148,7 +148,7 @@ class addtional_settings_helper {
         $sqlexecuted = $DB->get_recordset_sql($sql, $params);
         return $sqlexecuted;
     }
-    
+
     /**
      * Delete file.
      *

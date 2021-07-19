@@ -2,8 +2,8 @@ define(['jquery', 'core/ajax', 'core/notification'],
     function($, Ajax, Notification) {
         return {
             setup: function(props){
-                console.log("props found",props);
-                console.log('startattempt/setup called');
+                // console.log("props found",props);
+                // console.log('startattempt/setup called');
                 window.invigilator_share_state = document.getElementById('invigilator_share_state');
                 window.invigilator_window_surface = document.getElementById('invigilator_window_surface');
                 window.invigilator_screenoff = document.getElementById('invigilator_screen_off_flag');
@@ -20,7 +20,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
 
                 $("#invigilator-share-screen-btn").click(function() {
                     event.preventDefault();
-                    console.log('screen sharing clicked');
+                    // console.log('screen sharing clicked');
                     startCapture();
                 });
 
@@ -149,7 +149,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                 var screenShotInterval = setInterval(takeScreenshot, props.screenshotdelay*1000);
             },
             init: function(props) {
-                console.log('startattempt/init called');
+                // console.log('startattempt/init called');
                 $('#id_submitbutton').prop("disabled", true);
                 $('#id_invigilator').css("display", 'none');
                 $("label[for='id_invigilator']").css("display", 'none');
@@ -157,15 +157,15 @@ define(['jquery', 'core/ajax', 'core/notification'],
 
                 $('#id_invigilator').click(function() {
                     if (!$(this).is(':checked')) {
-                        console.log("un Checked");
+                        // console.log("un Checked");
                         hideButtons();
                     }
                     else{
-                        console.log("Checked");
+                        // console.log("Checked");
                         var screensharestatus = document.getElementById('invigilator_share_state').value;
                         var screensharemode = document.getElementById('invigilator_window_surface').value;
-                        console.log(screensharemode);
-                        console.log(screensharestatus);
+                        // console.log(screensharemode);
+                        // console.log(screensharestatus);
                         if((screensharemode == 'monitor') && (screensharestatus == "true")){
                             showButtons();
                         }
