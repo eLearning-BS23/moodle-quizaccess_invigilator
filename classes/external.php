@@ -102,7 +102,7 @@ class quizaccess_invigilator_external extends external_api
         $record->license = '';
         $record->author = '';
 
-        $context = context_module::instance($quizid);
+        $context = context_module::instance($cmid);
         $fs = get_file_storage();
         $record->filepath = file_correct_filepath($record->filepath);
 
