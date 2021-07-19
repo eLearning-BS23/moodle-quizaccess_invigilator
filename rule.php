@@ -115,8 +115,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
         $record["courseid"] = (int)$coursedata['courseid'];
         $record["cmid"] = (int)$coursedata['cmid'];
         $record["quizid"] = (int)$coursedata['quizid'];
-        $record["screenshotdelay"] = $screenshotdelay;
-        $record["screenshotwidth"] = $screenshotwidth;
+        $record["screenshotdelay"] = (int)$screenshotdelay;
+        $record["screenshotwidth"] = (int)$screenshotwidth;
 
         $PAGE->requires->js_call_amd('quizaccess_invigilator/startattempt', 'setup', array($record));
         $attributesarray = $mform->_attributes;
