@@ -18,7 +18,7 @@
  * Extrarnal for the quizaccess_invigilator plugin.
  *
  * @package   quizaccess_invigilator
- * @copyright 2020 Brain Station 23
+ * @copyright 2021 Brain Station 23
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,7 +30,7 @@ require_once($CFG->libdir.'/externallib.php');
  * External class.
  *
  * @package quizaccess_invigilator
- * @copyright 2020 Brain Station 23
+ * @copyright 2021 Brain Station 23
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class quizaccess_invigilator_external extends external_api
