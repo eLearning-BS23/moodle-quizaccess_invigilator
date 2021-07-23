@@ -1,19 +1,4 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Extrarnal for the quizaccess_invigilator plugin.
  *
@@ -81,10 +66,10 @@ class quizaccess_invigilator_external extends external_api
         );
         $filepath = "/";
 
-        // Save file
+        // Save file.
         $warnings = array();
 
-        // Insert log with blank path
+        // Insert log with blank path.
         $record = new stdClass();
         $record->courseid = $courseid;
         $record->cmid = $cmid;
@@ -132,16 +117,16 @@ class quizaccess_invigilator_external extends external_api
             false
         );
 
-        // Update filepath in log
-        $updatedData = new stdClass();
-        $updatedData->id = $screenshotid;
-        $updatedData->courseid = $courseid;
-        $updatedData->cmid = $cmid;
-        $updatedData->quizid = $quizid;
-        $updatedData->userid = $USER->id;
-        $updatedData->screenshot = "{$url}";
-        $updatedData->timecreated = time();
-        $DB->update_record('quizaccess_invigilator_logs', $updatedData);
+        // Update filepath in log.
+        $updateddata = new stdClass();
+        $updateddata->id = $screenshotid;
+        $updateddata->courseid = $courseid;
+        $updateddata->cmid = $cmid;
+        $updateddata->quizid = $quizid;
+        $updateddata->userid = $USER->id;
+        $updateddata->screenshot = "{$url}";
+        $updateddata->timecreated = time();
+        $DB->update_record('quizaccess_invigilator_logs', $updateddata);
 
         $result = array();
         $result['screenshotid'] = $screenshotid;
@@ -171,7 +156,7 @@ class quizaccess_invigilator_external extends external_api
      * Check user capability
      * @param array $params
      * @param context $context
-     * @param $USER
+     * @param int $USER
      * @return void
      * @throws dml_exception
      * @throws moodle_exception
@@ -189,7 +174,7 @@ class quizaccess_invigilator_external extends external_api
 
     /**
      * Adds timestamp information to captured image.
-     * @param $data
+     * @param string $data
      * @return string
      */
     private static function add_timecode_to_image ($data) {

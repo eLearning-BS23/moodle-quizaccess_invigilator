@@ -1,24 +1,9 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Additional Settings Helper for the quizaccess_invigilator plugin.
+ * Additional settings helper.
  *
  * @package    quizaccess_invigilator
- * @copyright  2021 Brain Station 23
+ * @copyright  2020 onward: Brickfield Education Labs, www.brickfield.ie
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -126,24 +111,12 @@ class addtional_settings_helper {
             return $sqlexecuted;
         }
 
-        $sql = "SELECT
-            e.id as reportid,
-            e.userid as studentid,
-            e.screenshot as screenshot,
-            e.quizid as quizid,
-            e.courseid as courseid,
-            e.timecreated as timecreated,
-            u.firstname as firstname,
-            u.lastname as lastname,
-            u.email as email,
-            c.fullname as coursename,
-            q.name as quizname
-            from  {quizaccess_invigilator_logs} e
-            INNER JOIN {user} u  ON u.id = e.userid
-            INNER JOIN {course} c  ON c.id = e.courseid
-            INNER JOIN {course_modules} cm  ON cm.id = e.cmid
-            INNER JOIN {quiz} q  ON q.id = e.quizid
-            WHERE $whereclause";
+        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot, e.quizid as quizid, e.courseid as courseid, e.timecreated as timecreated,
+u.firstname as firstname, u.lastname as lastname,
+u.email as email, c.fullname as coursename, q.name as quizname
+FROM  {quizaccess_invigilator_logs} e
+INNER JOIN {user} u  ON u.id = e.userid INNER JOIN {course} c  ON c.id = e.courseid INNER JOIN {course_modules} cm  ON cm.id = e.cmid INNER JOIN {quiz} q  ON q.id = e.quizid
+WHERE $whereclause";
 
         $sqlexecuted = $DB->get_recordset_sql($sql, $params);
         return $sqlexecuted;
@@ -152,10 +125,10 @@ class addtional_settings_helper {
     /**
      * Delete file.
      *
-     * @param string $filerow The id of the quiz.
+     * @param object $filerow The id of the quiz.
      * @return void
      */
-    public function deleteFile ($filerow) {
+    public function deletefile ($filerow) {
         $fs = get_file_storage();
         $fileinfo = array(
             'component' => 'quizaccess_invigilator',
@@ -181,11 +154,9 @@ class addtional_settings_helper {
      * @param int $courseid The id of the course.
      * @return array
      */
-    public function searchSSByCourseID ($courseid){
+    public function searchssbycourseid ($courseid) {
         global $DB;
-        $sql = "SELECT *
-            from  {quizaccess_invigilator_logs} e
-            WHERE e.courseid = :courseid";
+        $sql = "SELECT * FROM  {quizaccess_invigilator_logs} e WHERE e.courseid = :courseid";
         $params = array();
         $params['courseid'] = $courseid;
         $sqlexecuted = $DB->get_recordset_sql($sql, $params);
@@ -198,11 +169,9 @@ class addtional_settings_helper {
      * @param int $quizid The id of the quiz.
      * @return array
      */
-    public function searchSSByQuizID ($quizid){
+    public function searchssbyquizid ($quizid) {
         global $DB;
-        $sql = "SELECT *
-            from  {quizaccess_invigilator_logs} e
-            WHERE e.quizid = :quizid";
+        $sql = "SELECT * FROM  {quizaccess_invigilator_logs} e WHERE e.quizid = :quizid";
         $params = array();
         $params['quizid'] = $quizid;
         $sqlexecuted = $DB->get_recordset_sql($sql, $params);
@@ -216,7 +185,7 @@ class addtional_settings_helper {
      * @param string $deleteidstring The id of the quiz.
      * @return void
      */
-    public function deleteSSLogs ($deleteidstring) {
+    public function deletesslogs ($deleteidstring) {
         global $DB;
         $deleteids = explode(",", $deleteidstring);
         if (count($deleteids) > 0) {
@@ -231,16 +200,13 @@ class addtional_settings_helper {
                 $filename = end($patharray);
 
                 $DB->delete_records('quizaccess_invigilator_logs', array('id' => $id));
-                $filesql = 'SELECT * FROM {files}
-                        WHERE
-                        component = "quizaccess_invigilator"
-                        AND filearea = "picture"
-                        AND filename = :filename';
+                $filesql = 'SELECT * FROM {files} WHERE component = "quizaccess_invigilator" AND filearea = "picture"
+AND filename = :filename';
                 $params = array();
                 $params["filename"] = $filename;
                 $usersfiles = $DB->get_records_sql($filesql, $params);
                 foreach ($usersfiles as $row) {
-                    $this->deleteFile($row);
+                    $this->deletefile($row);
                 }
             }
         }
