@@ -29,15 +29,25 @@ You can install this plugin from [Moodle plugins directory](https://moodle.org/p
 ```
   Dashboard->My courses->Your Course Name->Lesson->Quiz Name->Edit settings
 ```
-Image needed
+<p>
+<img width="800" alt="Settings" src="https://user-images.githubusercontent.com/19352999/126743993-26b5312d-7173-4f79-9d2f-fe2c212fc650.PNG">
+</P>
 
 > Now you can attempt your quiz like this:
 
-Image needed
+<p>
+<img width="800" alt="StartAttempt" src="https://user-images.githubusercontent.com/19352999/126743491-4edd9f35-257a-42d3-bc73-469ca05a1a63.PNG">
+</p>
 
 > You can check the report from Admin Site:
 
-Image needed
+<p>
+  <img width="800" alt="Report1" src="https://user-images.githubusercontent.com/19352999/126743566-c397792a-e303-4275-b155-2bbd657dffc8.PNG">
+</p>
+
+<p>
+  <img width="800" alt="Report2" src="https://user-images.githubusercontent.com/19352999/126743603-a6be4c08-9229-4d4a-b8e5-ce7f41336bb1.PNG">
+</p>
 
 ## License
 
