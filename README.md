@@ -1,9 +1,9 @@
 # Invigilator 
 
-Invigilator is a quizaccess plugin to capture the user's screenshot(Entire display surface) to detect if the user is using unfair means during the Quiz. It will capture the screenshot(Entire display surface) automatically every 30 seconds and store it as a PNG image. 
+The Invigilator is a quizaccess plugin to capture the user's screenshot(Entire display surface) to detect if the user is using unfair means during the Quiz. It will capture the screenshot automatically in every 30 seconds (configurable) and store it as a PNG image. 
 
 
-This plugin will help you to capture random screenshot when the student/user is attempting the Quiz. 
+This plugin will help you to capture a random screenshots when the student/user is attempting the Quiz. 
 Before starting the quiz, it will ask for screenshare permission. By accepting the permission you will be able to see your screenshots and you can continue to answer the questions. It will act as a video recording service like everything is capturing so the user will don't try to do anything suspicious during the exam.
 
 
@@ -11,7 +11,7 @@ Before starting the quiz, it will ask for screenshare permission. By accepting t
 - Capture screenshot of entire screen.
 - Can't access quiz if the user does not allow the screenshare
 - Admin report and check any suspicious activity
-- Will work with existing Question Bank and Quiz
+- It will work with existing Questions Bank and Quizes
 - Webservice API for external call
 - Images are stored in Moodledata as a small png image
 
