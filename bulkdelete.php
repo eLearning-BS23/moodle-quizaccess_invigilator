@@ -51,10 +51,10 @@ $helper = new addtional_settings_helper();
 echo $OUTPUT->header();
 
 if ($type == 'course') {
-    $screenshotdata = $helper->searchSSByCourseID($id);
+    $screenshotdata = $helper->searchssbycourseid($id);
 
 } else if ($type == 'quiz') {
-    $screenshotdata = $helper->searchSSByQuizID($id);
+    $screenshotdata = $helper->searchssbyquizid($id);
 } else {
     echo "invalid type";
 }
@@ -64,7 +64,7 @@ foreach ($screenshotdata as $row) {
 }
 
 $ssrowidstring = implode(',', $ssrowids);
-$helper->deleteSSLogs($ssrowidstring);
+$helper->deletesslogs($ssrowidstring);
 
 $params = array(
     'cmid' => $cmid

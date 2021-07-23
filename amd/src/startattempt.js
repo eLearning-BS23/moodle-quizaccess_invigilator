@@ -1,12 +1,10 @@
 define(['jquery', 'core/ajax', 'core/notification'],
     function($, Ajax, Notification) {
         return {
-            setup: function(props){
-                // console.log("props found",props);
-                // console.log('startattempt/setup called');
-                window.invigilator_share_state = document.getElementById('invigilator_share_state');
-                window.invigilator_window_surface = document.getElementById('invigilator_window_surface');
-                window.invigilator_screenoff = document.getElementById('invigilator_screen_off_flag');
+            setup: function(props) {
+                window.invigilatorShareState = document.getElementById('invigilator_share_state');
+                window.invigilatorWindowSurface = document.getElementById('invigilator_window_surface');
+                window.invigilatorScreenoff = document.getElementById('invigilator_screen_off_flag');
 
                 const videoElem = document.getElementById("invigilator-video-screen");
                 const logElem = document.getElementById("invigilator-log-screen");
@@ -20,10 +18,12 @@ define(['jquery', 'core/ajax', 'core/notification'],
 
                 $("#invigilator-share-screen-btn").click(function() {
                     event.preventDefault();
-                    // console.log('screen sharing clicked');
                     startCapture();
                 });
 
+                /**
+                 * Start screen capture.
+                 */
                 async function startCapture() {
                     logElem.innerHTML = "";
                     try {
@@ -35,10 +35,14 @@ define(['jquery', 'core/ajax', 'core/notification'],
                         // Console.log("Error: " + err.toString());
                         let errString = err.toString();
                         if (errString == "NotAllowedError: Permission denied") {
-                            alert("Please share entire screen.");
+                            Notification.addNotification({
+                                message: "Please share entire screen.",
+                                type: 'error'
+                            });
                             return false;
                         }
                     }
+                    return true;
                 }
 
                 var updateWindowStatus = function() {
@@ -75,14 +79,20 @@ define(['jquery', 'core/ajax', 'core/notification'],
 
                         if (screenoff == "0") {
                             if (!active) {
-                                alert("Sorry !! You need to restart the attempt as you have stopped the screenshare.");
+                                Notification.addNotification({
+                                    message: "Sorry !! You need to restart the attempt as you have stopped the screenshare.",
+                                    type: 'error'
+                                });
                                 clearInterval(screenShotInterval);
                                 window.close();
                                 return false;
                             }
 
                             if (displaySurface !== "monitor") {
-                                alert("Sorry !! You need to share entire screen.");
+                                Notification.addNotification({
+                                    message: "Sorry !! You need to share entire screen.",
+                                    type: 'error'
+                                });
                                 clearInterval(screenShotInterval);
                                 window.close();
                                 return false;
@@ -93,18 +103,18 @@ define(['jquery', 'core/ajax', 'core/notification'],
                         // console.log(quizurl);
 
                         // Capture Screen
-                        var video_screen = document.getElementById('invigilator-video-screen');
-                        var canvas_screen = document.getElementById('invigilator-canvas-screen');
-                        var screen_context = canvas_screen.getContext('2d');
+                        var videoScreen = document.getElementById('invigilator-video-screen');
+                        var canvasScreen = document.getElementById('invigilator-canvas-screen');
+                        var screenContext = canvasScreen.getContext('2d');
                         // Var photo_screen = document.getElementById('photo_screen');
-                        var width_config = props.screenshotwidth;
-                        var height_config = findHeight(props.screenshotwidth);
-                        canvas_screen.width = width_config;
-                        canvas_screen.height = height_config;
-                        screen_context.drawImage(video_screen, 0, 0, width_config, height_config);
-                        var screen_data = canvas_screen.toDataURL('image/png');
-                        // Photo_screen.setAttribute('src', screen_data);
-                        // console.log(screen_data);
+                        var widthConfig = props.screenshotwidth;
+                        var heightConfig = findHeight(props.screenshotwidth);
+                        canvasScreen.width = widthConfig;
+                        canvasScreen.height = heightConfig;
+                        screenContext.drawImage(videoScreen, 0, 0, widthConfig, heightConfig);
+                        var screenData = canvasScreen.toDataURL('image/png');
+                        // Photo_screen.setAttribute('src', screenData);
+                        // console.log(screenData);
 
                         // API Call
                         var wsfunction = 'quizaccess_invigilator_send_screenshot';
@@ -112,7 +122,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                             'courseid': props.courseid,
                             'cmid': props.cmid,
                             'quizid': props.quizid,
-                            'screenshot': screen_data
+                            'screenshot': screenData
                         };
 
                         var request = {
@@ -126,7 +136,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                                 if (data.warnings.length < 1) {
                                     // NO; pictureCounter++;
                                 } else {
-                                    if (video_screen) {
+                                    if (videoScreen) {
                                         Notification.addNotification({
                                             message: 'Something went wrong during taking the image.',
                                             type: 'error'
@@ -137,19 +147,22 @@ define(['jquery', 'core/ajax', 'core/notification'],
                             }).fail(Notification.exception);
                         }
                     }
+                    return true;
                 };
 
+                /**
+                 * Calculate height from width and screen aspect ratio.
+                 */
                 function findHeight(width) {
-                    var currentAspectRatio = screen.width/screen.height;
+                    var currentAspectRatio = screen.width / screen.height;
                     var newHeight = width / currentAspectRatio;
                     return newHeight;
                 }
 
                 var windowState = setInterval(updateWindowStatus, 1000);
-                var screenShotInterval = setInterval(takeScreenshot, props.screenshotdelay*1000);
+                var screenShotInterval = setInterval(takeScreenshot, props.screenshotdelay * 1000);
             },
-            init: function(props) {
-                // console.log('startattempt/init called');
+            init: function() {
                 $('#id_submitbutton').prop("disabled", true);
                 $('#id_invigilator').css("display", 'none');
                 $("label[for='id_invigilator']").css("display", 'none');
@@ -157,20 +170,17 @@ define(['jquery', 'core/ajax', 'core/notification'],
 
                 $('#id_invigilator').click(function() {
                     if (!$(this).is(':checked')) {
-                        // console.log("un Checked");
                         hideButtons();
-                    }
-                    else{
-                        // console.log("Checked");
+                    } else{
                         var screensharestatus = document.getElementById('invigilator_share_state').value;
                         var screensharemode = document.getElementById('invigilator_window_surface').value;
-                        // console.log(screensharemode);
-                        // console.log(screensharestatus);
-                        if((screensharemode == 'monitor') && (screensharestatus == "true")){
+                        if ((screensharemode == 'monitor') && (screensharestatus == "true")) {
                             showButtons();
-                        }
-                        else{
-                            alert('Please click share screen and choose entire monitor.');
+                        } else{
+                            Notification.addNotification({
+                                message: 'Please click share screen and choose entire monitor.',
+                                type: 'error'
+                            });
                         }
                     }
                 });

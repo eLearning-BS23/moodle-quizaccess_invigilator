@@ -44,10 +44,9 @@ class quizaccess_invigilator extends quiz_access_rule_base
     public function is_preflight_check_required($attemptid) {
         $script = $this->get_topmost_script();
         $base = basename($script);
-        if($base == "view.php"){
+        if ($base == "view.php"){
             return true;
-        }
-        else{
+        }else{
             return false;
         }
     }
@@ -62,7 +61,7 @@ class quizaccess_invigilator extends quiz_access_rule_base
         $backtrace = debug_backtrace(
             defined("DEBUG_BACKTRACE_IGNORE_ARGS")
                 ? DEBUG_BACKTRACE_IGNORE_ARGS
-                : FALSE);
+                : false);
         $topframe = array_pop($backtrace);
         return $topframe['file'];
     }
@@ -73,8 +72,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
      * @return String
      * @throws coding_exception
      */
-    public function make_modal_content(){
-        global $USER,$OUTPUT;
+    public function make_modal_content() {
+        global $USER, $OUTPUT;
         $headercontent = get_string('sharescreen', 'quizaccess_invigilator');
         $header = "<h3>$headercontent</h3>";
 
@@ -90,7 +89,7 @@ class quizaccess_invigilator extends quiz_access_rule_base
                     </tr>
                     <tr>
                         <td colspan='2'>$screenhtml</td>
-                    </tr>   
+                    </tr>
                 </table></div>";
 
         return $html;
@@ -142,9 +141,7 @@ class quizaccess_invigilator extends quiz_access_rule_base
      * @return array
      * @throws coding_exception
      */
-    public function get_courseid_cmid_from_preflight_form(){
-
-
+    public function get_courseid_cmid_from_preflight_form() {
         $response = array();
         $response['courseid'] = $this->quiz->course;
         $response['quizid'] = $this->quiz->id;
@@ -310,7 +307,7 @@ class quizaccess_invigilator extends quiz_access_rule_base
             // Get Screenshot Delay and Image Width.
             $screenshotdelay = get_invigilator_settings('screenshotdelay');
             $screenshotwidth = get_invigilator_settings('screenshotwidth');
-            $quizurl = new moodle_url("/mod/quiz/view.php",array("id"=> $this->quiz->cmid));
+            $quizurl = new moodle_url("/mod/quiz/view.php", array("id" => $this->quiz->cmid));
 
             $record = new stdClass();
             $record->screenshotdelay = $screenshotdelay;

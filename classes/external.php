@@ -81,10 +81,10 @@ class quizaccess_invigilator_external extends external_api
         );
         $filepath = "/";
 
-        // Save file
+        // Save file.
         $warnings = array();
 
-        // Insert log with blank path
+        // Insert log with blank path.
         $record = new stdClass();
         $record->courseid = $courseid;
         $record->cmid = $cmid;
@@ -132,16 +132,16 @@ class quizaccess_invigilator_external extends external_api
             false
         );
 
-        // Update filepath in log
-        $updatedData = new stdClass();
-        $updatedData->id = $screenshotid;
-        $updatedData->courseid = $courseid;
-        $updatedData->cmid = $cmid;
-        $updatedData->quizid = $quizid;
-        $updatedData->userid = $USER->id;
-        $updatedData->screenshot = "{$url}";
-        $updatedData->timecreated = time();
-        $DB->update_record('quizaccess_invigilator_logs', $updatedData);
+        // Update filepath in log.
+        $updateddata = new stdClass();
+        $updateddata->id = $screenshotid;
+        $updateddata->courseid = $courseid;
+        $updateddata->cmid = $cmid;
+        $updateddata->quizid = $quizid;
+        $updateddata->userid = $USER->id;
+        $updateddata->screenshot = "{$url}";
+        $updateddata->timecreated = time();
+        $DB->update_record('quizaccess_invigilator_logs', $updateddata);
 
         $result = array();
         $result['screenshotid'] = $screenshotid;

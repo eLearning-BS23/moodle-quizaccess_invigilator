@@ -45,7 +45,6 @@ $PAGE->set_title('Invigilator Summary Report');
 $PAGE->set_heading('Invigilator Summary Report');
 
 $PAGE->navbar->add('Invigilator Report', $url);
-//$PAGE->requires->js_call_amd('quizaccess_invigilator/additionalSettings', 'setup', array());
 
 echo $OUTPUT->header();
 
@@ -100,7 +99,6 @@ foreach ($coursesummary as $row) {
     echo '<tr class="course-row no-border">';
     echo '<td colspan="3" class="no-border">'.$row->courseshortname.":".$row->coursefullname."</td>";
 
-//    echo '<td class="no-border">'.$row->logcount."</td>";
     echo '<td class="no-border">'.$deletelink1."</td>";
     echo '</tr>';
 

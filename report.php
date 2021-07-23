@@ -45,7 +45,6 @@ require_login($course, true, $cm);
 $COURSE = $DB->get_record('course', array('id' => $courseid));
 $quiz = $DB->get_record('quiz', array('id' => $cm->instance));
 
-//echo "success";
 $params = array(
     'courseid' => $courseid,
     'userid' => $studentid,
@@ -63,7 +62,7 @@ $url = new moodle_url(
     $params
 );
 
-$navparam = ["courseid" => $courseid,"cmid" => $cmid];
+$navparam = ["courseid" => $courseid, "cmid" => $cmid];
 $navurl = new moodle_url(
     '/mod/quiz/accessrule/invigilator/report.php',
     $navparam
@@ -126,11 +125,7 @@ if (has_capability('quizaccess/invigilator:deletescreenshot', $context, $USER->i
 ) {
     $DB->delete_records('quizaccess_invigilator_logs', array('courseid' => $courseid, 'cmid' => $cmid, 'userid' => $studentid));
     // Delete users file (webcam images).
-    $filesql = 'SELECT * FROM {files}
-                WHERE userid = :studentid  
-                AND contextid = :contextid  
-                AND component = \'quizaccess_invigilator\' 
-                AND filearea = \'picture\'';
+    $filesql = 'SELECT * FROM {files} WHERE userid = :studentid  AND contextid = :contextid  AND component = \'quizaccess_invigilator\' AND filearea = \'picture\'';
 
     $params = array();
     $params["studentid"] = $studentid;
@@ -176,7 +171,7 @@ echo '<div id="main">
     . get_string('screenshot', 'quizaccess_invigilator') . '</div>
 ';
 
-// Report print
+// Report print.
 if (
     has_capability('quizaccess/invigilator:viewreport', $context, $USER->id) &&
     $cmid != null &&
@@ -185,48 +180,48 @@ if (
     // Check if report if for some user.
     if ($studentid != null && $cmid != null && $courseid != null && $reportid != null) {
         // Report for this user.
-        $sql = "SELECT 
-                    e.id as reportid, 
-                    e.userid as studentid, 
-                    e.screenshot as screenshot, 
-                    e.timecreated as timecreated, 
-                    u.firstname as firstname, 
-                    u.lastname as lastname, 
+        $sql = "SELECT
+                    e.id as reportid,
+                    e.userid as studentid,
+                    e.screenshot as screenshot,
+                    e.timecreated as timecreated,
+                    u.firstname as firstname,
+                    u.lastname as lastname,
                     u.email as email
-                 FROM  {quizaccess_invigilator_logs} e 
+                 FROM  {quizaccess_invigilator_logs} e
                  INNER JOIN {user} u  ON u.id = e.userid
-                 WHERE e.courseid = '$courseid' 
-                 AND e.cmid = '$cmid' 
-                 AND u.id = '$studentid' 
+                 WHERE e.courseid = '$courseid'
+                 AND e.cmid = '$cmid'
+                 AND u.id = '$studentid'
                  AND e.id = '$reportid'";
     }
 
     if ($studentid == null && $cmid != null && $courseid != null) {
         // Report for all users.
-        $sql = "SELECT  
-                    DISTINCT e.userid as studentid, 
-                    u.firstname as firstname, 
+        $sql = "SELECT
+                    DISTINCT e.userid as studentid,
+                    u.firstname as firstname,
                     u.lastname as lastname,
-                    u.email as email, 
+                    u.email as email,
                     max(e.screenshot) as screenshot,
-                    max(e.id) as reportid, 
+                    max(e.id) as reportid,
                     max(e.timecreated) as timecreated
-                FROM  {quizaccess_invigilator_logs} e 
+                FROM  {quizaccess_invigilator_logs} e
                 INNER JOIN {user} u ON u.id = e.userid
-                WHERE e.courseid = '$courseid' 
+                WHERE e.courseid = '$courseid'
                 AND e.cmid = '$cmid'
                 GROUP BY e.userid, u.firstname, u.lastname, u.email";
     }
 
     if ($studentid == null && $cmid != null && $searchkey != null && $submittype == "clear") {
         // Report for searched users.
-        $sql = "SELECT  
-                    DISTINCT e.userid as studentid, 
-                    u.firstname as firstname, 
+        $sql = "SELECT
+                    DISTINCT e.userid as studentid,
+                    u.firstname as firstname,
                     u.lastname as lastname,
-                    u.email as email, 
+                    u.email as email,
                     max(e.screenshot) as screenshot,
-                    max(e.id) as reportid, 
+                    max(e.id) as reportid,
                     max(e.timecreated) as timecreated
                 FROM  {quizaccess_invigilator_logs} e 
                 INNER JOIN {user} u ON u.id = e.userid
@@ -245,13 +240,13 @@ if (
                     max(e.screenshot) as screenshot,
                     max(e.id) as reportid, 
                     max(e.timecreated) as timecreated
-                FROM  {quizaccess_invigilator_logs} e 
+                FROM  {quizaccess_invigilator_logs} e
                 INNER JOIN {user} u ON u.id = e.userid
                 WHERE
                 (e.courseid = '$courseid' AND e.cmid = '$cmid' AND ".$DB->sql_like('u.firstname', ':firstnamelike', false).") OR "
             ."(e.courseid = '$courseid' AND e.cmid = '$cmid' AND ".$DB->sql_like('u.email', ':emaillike', false).") OR "
             ."(e.courseid = '$courseid' AND e.cmid = '$cmid' AND ".$DB->sql_like('u.lastname', ':lastnamelike', false)
-            .")group by e.userid, u.firstname, u.lastname, u.email"; // False = not case sensitive.
+            .")group by e.userid, u.firstname, u.lastname, u.email";
     }
 
     // Print report.
@@ -309,17 +304,17 @@ if (
     // Print image results.
     if ($studentid != null && $cmid != null && $courseid != null && $reportid != null) {
         $data = array();
-        $sql = "SELECT e.id as reportid, 
-                e.userid as studentid, 
-                e.screenshot as screenshot, 
-                e.timecreated as timecreated, 
-                u.firstname as firstname, 
-                u.lastname as lastname, 
+        $sql = "SELECT e.id as reportid,
+                e.userid as studentid,
+                e.screenshot as screenshot,
+                e.timecreated as timecreated,
+                u.firstname as firstname,
+                u.lastname as lastname,
                 u.email as email
-                FROM {quizaccess_invigilator_logs} e 
+                FROM {quizaccess_invigilator_logs} e
                 INNER JOIN {user} u  ON u.id = e.userid
-                WHERE e.courseid = '$courseid' 
-                AND e.cmid = '$cmid' 
+                WHERE e.courseid = '$courseid'
+                AND e.cmid = '$cmid'
                 AND u.id = '$studentid'";
 
         $sqlexecuted = $DB->get_recordset_sql($sql);

@@ -155,7 +155,7 @@ class addtional_settings_helper {
      * @param string $filerow The id of the quiz.
      * @return void
      */
-    public function deleteFile ($filerow) {
+    public function deletefile ($filerow) {
         $fs = get_file_storage();
         $fileinfo = array(
             'component' => 'quizaccess_invigilator',
@@ -181,7 +181,7 @@ class addtional_settings_helper {
      * @param int $courseid The id of the course.
      * @return array
      */
-    public function searchSSByCourseID ($courseid){
+    public function searchssbycourseid ($courseid) {
         global $DB;
         $sql = "SELECT *
             from  {quizaccess_invigilator_logs} e
@@ -198,7 +198,7 @@ class addtional_settings_helper {
      * @param int $quizid The id of the quiz.
      * @return array
      */
-    public function searchSSByQuizID ($quizid){
+    public function searchssbyquizid ($quizid) {
         global $DB;
         $sql = "SELECT *
             from  {quizaccess_invigilator_logs} e
@@ -216,7 +216,7 @@ class addtional_settings_helper {
      * @param string $deleteidstring The id of the quiz.
      * @return void
      */
-    public function deleteSSLogs ($deleteidstring) {
+    public function deletesslogs ($deleteidstring) {
         global $DB;
         $deleteids = explode(",", $deleteidstring);
         if (count($deleteids) > 0) {
@@ -240,7 +240,7 @@ class addtional_settings_helper {
                 $params["filename"] = $filename;
                 $usersfiles = $DB->get_records_sql($filesql, $params);
                 foreach ($usersfiles as $row) {
-                    $this->deleteFile($row);
+                    $this->deletefile($row);
                 }
             }
         }

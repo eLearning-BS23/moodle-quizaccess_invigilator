@@ -2,8 +2,11 @@ define(['jquery', 'core/ajax', 'core/notification'],
     function($) {
         return {
             setup: function(props) {
-                // console.log('attemptpage/setup called');
                 var quizurl = props.quizurl;
+
+                /**
+                 * Closes attempt page upon parent window close.
+                 */
                 function CloseOnParentClose() {
                     if (typeof window.opener != 'undefined' && window.opener !== null) {
                         if (window.opener.closed) {
@@ -14,26 +17,19 @@ define(['jquery', 'core/ajax', 'core/notification'],
                     }
 
                     var parentWindowURL = window.opener.location.href;
-                    // console.log("parenturl", parentWindowURL);
-                    // console.log("quizurl", quizurl);
 
                     if (parentWindowURL !== quizurl) {
                         window.close();
                     }
 
-                    var share_state = window.opener.invigilator_share_state;
-                    var window_surface = window.opener.invigilator_window_surface;
-                    // Console.log('parent ss', share_state);
-                    // console.log('parent ws', window_surface);
+                    var shareState = window.opener.invigilatorShareState;
+                    var windowSurface = window.opener.invigilatorWindowSurface;
 
-                    if (share_state.value !== "true") {
-                        // Window.close();
-                        // console.log('close window now');
+                    if (shareState.value !== "true") {
                         window.close();
                     }
 
-                    if (window_surface.value !== 'monitor') {
-                        // Console.log('close window now');
+                    if (windowSurface.value !== 'monitor') {
                         window.close();
                     }
                 }
@@ -43,7 +39,6 @@ define(['jquery', 'core/ajax', 'core/notification'],
                 return true;
             },
             init: function() {
-                // console.log('attemptpage/init called');
                 return true;
             }
         };
