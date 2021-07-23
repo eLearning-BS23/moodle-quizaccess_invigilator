@@ -1,6 +1,6 @@
 # Invigilator 
 
-The Invigilator is a quizaccess plugin to capture the user's screenshot(Entire display surface) to detect if the user is using unfair means during the Quiz. It will capture the screenshot automatically in every 30 seconds (configurable) and store it as a PNG image. 
+The Invigilator is a quizaccess plugin to capture the user's screenshot (entire display surface including tabs) to detect if the user is using unfair means during the Quiz. It will capture the screenshot automatically in every 30 seconds (configurable) and store it as a PNG image. 
 
 
 This plugin will help you to capture a random screenshots when the student/user is attempting the Quiz. 
