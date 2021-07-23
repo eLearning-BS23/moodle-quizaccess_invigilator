@@ -1,19 +1,20 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ This file is part of Moodle - http://moodle.org/
 
+ Moodle is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Moodle is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+*/
 /**
  * Extrarnal for the quizaccess_invigilator plugin.
  *
@@ -171,7 +172,7 @@ class quizaccess_invigilator_external extends external_api
      * Check user capability
      * @param array $params
      * @param context $context
-     * @param $USER
+     * @param int $USER
      * @return void
      * @throws dml_exception
      * @throws moodle_exception
@@ -189,7 +190,7 @@ class quizaccess_invigilator_external extends external_api
 
     /**
      * Adds timestamp information to captured image.
-     * @param $data
+     * @param string $data
      * @return string
      */
     private static function add_timecode_to_image ($data) {

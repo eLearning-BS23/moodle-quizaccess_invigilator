@@ -1,18 +1,20 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ This file is part of Moodle - http://moodle.org/
+
+ Moodle is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Moodle is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /**
  * Implementaton for the quizaccess_invigilator plugin.
@@ -44,9 +46,9 @@ class quizaccess_invigilator extends quiz_access_rule_base
     public function is_preflight_check_required($attemptid) {
         $script = $this->get_topmost_script();
         $base = basename($script);
-        if ($base == "view.php"){
+        if ($base == "view.php") {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -79,19 +81,9 @@ class quizaccess_invigilator extends quiz_access_rule_base
 
         $screenhtml = get_string('screenhtml', 'quizaccess_invigilator');
         $screensharemsg = get_string('screensharemsg', 'quizaccess_invigilator');
-        $html = "<div style='margin: auto !important;padding: 30px !important;'>
-                 <table>
-                    <tr>
-                        <td colspan='2'>$header</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>$screensharemsg</td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'>$screenhtml</td>
-                    </tr>
-                </table></div>";
-
+        $html = "<div style='margin: auto !important;padding: 30px !important;'><table><tr>
+<td colspan='2'>$header</td></tr><tr><td colspan='2'>$screensharemsg</td></tr><tr>
+<td colspan='2'>$screenhtml</td></tr></table></div>";
         return $html;
     }
 
@@ -125,9 +117,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
         $screensharebtnlabel = get_string('sharescreenbtnlabel', 'quizaccess_invigilator');
         $modalcontent = $this->make_modal_content();
         $actionbtns = "<button id='invigilator-share-screen-btn' style='margin: 5px'>".$screensharebtnlabel."</button>";
-        $hiddenvalue = "<input id='invigilator_window_surface' value='' type='hidden'/>
-                        <input id='invigilator_share_state' value='' type='hidden'/>
-                        <input id='invigilator_screen_off_flag' value='0' type='hidden'/>";
+        $hiddenvalue = "<input id='invigilator_window_surface' value='' type='hidden'/><input id='invigilator_share_state' value='' type='hidden'/>
+<input id='invigilator_screen_off_flag' value='0' type='hidden'/>";
 
         $mform->addElement('static', 'modalcontent', '', $modalcontent);
         $mform->addElement('static', 'actionbtns', '', $actionbtns);

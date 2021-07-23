@@ -1,19 +1,20 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ This file is part of Moodle - http://moodle.org/
 
+ Moodle is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Moodle is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /**
  * Strings for the quizaccess_invigilator plugin.
@@ -38,15 +39,8 @@ $string['invigilatorrequired'] = 'Screenshot capture validation';
 $string['warning:allowscreenshare'] = 'Please allow screen share.';
 $string['invigilatorheader'] = '<strong>To continue with this quiz attempt you must share your screen. You must choose entire monitor in screen sharing option.</strong>';
 $string['picturesreport'] = 'View invigilator report';
-$string['screensharemsg'] = '<strong>* Please allow screenshare for entire monitor.</strong><br/>
-                             <strong>* Please dont close this window or your attempt will be closed</strong><br/>';
-$string['screenhtml'] = '<span>
-                            <video id="invigilator-video-screen" width="320" height="240" autoplay></video>
-                         </span>
-                         <canvas id="invigilator-canvas-screen" style="display:none;"></canvas>
-                         <img id="invigilator-photo-screen" alt="The picture will appear in this box." style="display:none;"/>
-                         <span class="invigilator-output-screen" style="display:none;"></span>
-                         <span id="invigilator-log-screen" style="display:none;"></span>';
+$string['screensharemsg'] = '<strong>* Please allow screenshare for entire monitor.</strong><br/><strong>* Please dont close this window or your attempt will be closed</strong><br/>';
+$string['screenhtml'] = '<span><video id="invigilator-video-screen" width="320" height="240" autoplay></video></span><canvas id="invigilator-canvas-screen" style="display:none;"></canvas><img id="invigilator-photo-screen" alt="The picture will appear in this box." style="display:none;"/><span class="invigilator-output-screen" style="display:none;"></span><span id="invigilator-log-screen" style="display:none;"></span>';
 $string['sharescreen'] = 'Allow screen share to continue';
 $string['sharescreenbtnlabel'] = 'Share screen';
 $string['quizaccess_invigilator_label'] = 'Invigilator';

@@ -152,6 +152,8 @@ define(['jquery', 'core/ajax', 'core/notification'],
 
                 /**
                  * Calculate height from width and screen aspect ratio.
+                 * @param {number} width
+                 * @returns {number}
                  */
                 function findHeight(width) {
                     var currentAspectRatio = screen.width / screen.height;
@@ -171,12 +173,12 @@ define(['jquery', 'core/ajax', 'core/notification'],
                 $('#id_invigilator').click(function() {
                     if (!$(this).is(':checked')) {
                         hideButtons();
-                    } else{
+                    } else {
                         var screensharestatus = document.getElementById('invigilator_share_state').value;
                         var screensharemode = document.getElementById('invigilator_window_surface').value;
                         if ((screensharemode == 'monitor') && (screensharestatus == "true")) {
                             showButtons();
-                        } else{
+                        } else {
                             Notification.addNotification({
                                 message: 'Please click share screen and choose entire monitor.',
                                 type: 'error'
