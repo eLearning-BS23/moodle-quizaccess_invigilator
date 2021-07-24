@@ -1,4 +1,18 @@
 <?php
+// This file is part of Moodle invigilator for Moodle - http://moodle.org/
+//
+// Moodle invigilator is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle invigilator is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with MailTest.  If not, see <http://www.gnu.org/licenses/>.
 /**
  * Additional Settings for the quizaccess_invigilator plugin.
  *
@@ -91,8 +105,8 @@ $table->setup();
 
 $con = "return confirm('Are you sure want to delete ?');";
 $searchrow = array();
-$searchrow[] = 'Select All &nbsp<input type="checkbox" id="select_all" name="select_all" value="0"><br/><button id="delete_select_btn" onclick="'
-    .$con.'" style="display: none;">Delete</button>';
+$searchrow[] = 'Select All &nbsp<input type="checkbox" id="select_all" name="select_all" value="0"><br/>
+<button id="delete_select_btn" onclick="'.$con.'" style="display: none;">Delete</button>';
 $searchrow[] = '<input type="text" placeholder="user name" id="uname" name="uname" value="'.$username.'">';
 $searchrow[] = '<input type="text" placeholder="email" id="email" name="email" value="'.$email.'">';
 $searchrow[] = '<input type="text" placeholder="coursename" id="coursename" name="coursename" value="'.$coursename.'">';

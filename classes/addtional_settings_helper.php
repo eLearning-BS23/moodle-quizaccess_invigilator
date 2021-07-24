@@ -1,4 +1,18 @@
 <?php
+// This file is part of Moodle invigilator for Moodle - http://moodle.org/
+//
+// Moodle invigilator is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle invigilator is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with MailTest.  If not, see <http://www.gnu.org/licenses/>.
 /**
  * Additional settings helper.
  *
@@ -111,11 +125,13 @@ class addtional_settings_helper {
             return $sqlexecuted;
         }
 
-        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot, e.quizid as quizid, e.courseid as courseid, e.timecreated as timecreated,
-u.firstname as firstname, u.lastname as lastname,
-u.email as email, c.fullname as coursename, q.name as quizname
+        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot,".
+"e.quizid as quizid, e.courseid as courseid, e.timecreated as timecreated,
+u.firstname as firstname, u.lastname as lastname,".
+"u.email as email, c.fullname as coursename, q.name as quizname
 FROM  {quizaccess_invigilator_logs} e
-INNER JOIN {user} u  ON u.id = e.userid INNER JOIN {course} c  ON c.id = e.courseid INNER JOIN {course_modules} cm  ON cm.id = e.cmid INNER JOIN {quiz} q  ON q.id = e.quizid
+INNER JOIN {user} u  ON u.id = e.userid INNER JOIN {course} c  ON c.id = e.courseid ".
+"INNER JOIN {course_modules} cm  ON cm.id = e.cmid INNER JOIN {quiz} q  ON q.id = e.quizid
 WHERE $whereclause";
 
         $sqlexecuted = $DB->get_recordset_sql($sql, $params);
