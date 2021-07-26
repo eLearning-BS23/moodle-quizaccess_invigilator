@@ -1,12 +1,25 @@
 <?php
-/**
- * Additional settings helper.
- *
- * @package    quizaccess_invigilator
- * @copyright  2020 onward: Brickfield Education Labs, www.brickfield.ie
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+// This file is part of Moodle invigilator for Moodle - http://moodle.org/
+//
+// Moodle invigilator is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle invigilator is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with MailTest.  If not, see <http://www.gnu.org/licenses/>.
 
+ /**
+  * additional_settings_helper class.
+  * @package quizaccess_invigilator
+  * @copyright  2021 Brain Station 23
+  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+  */
 class addtional_settings_helper {
     /**
      * Search for specific user invigilator log.
@@ -111,12 +124,14 @@ class addtional_settings_helper {
             return $sqlexecuted;
         }
 
-        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot, e.quizid as quizid, e.courseid as courseid, e.timecreated as timecreated,
-u.firstname as firstname, u.lastname as lastname,
-u.email as email, c.fullname as coursename, q.name as quizname
-FROM  {quizaccess_invigilator_logs} e
-INNER JOIN {user} u  ON u.id = e.userid INNER JOIN {course} c  ON c.id = e.courseid INNER JOIN {course_modules} cm  ON cm.id = e.cmid INNER JOIN {quiz} q  ON q.id = e.quizid
-WHERE $whereclause";
+        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot,".
+        " e.quizid as quizid, e.courseid as courseid, e.timecreated as timecreated,".
+        " u.firstname as firstname, u.lastname as lastname,".
+        " u.email as email, c.fullname as coursename, q.name as quizname".
+        " FROM  {quizaccess_invigilator_logs} e ".
+        " INNER JOIN {user} u  ON u.id = e.userid INNER JOIN {course} c  ON c.id = e.courseid ".
+        " INNER JOIN {course_modules} cm  ON cm.id = e.cmid INNER JOIN {quiz} q  ON q.id = e.quizid".
+        " WHERE $whereclause";
 
         $sqlexecuted = $DB->get_recordset_sql($sql, $params);
         return $sqlexecuted;
@@ -200,8 +215,8 @@ WHERE $whereclause";
                 $filename = end($patharray);
 
                 $DB->delete_records('quizaccess_invigilator_logs', array('id' => $id));
-                $filesql = 'SELECT * FROM {files} WHERE component = "quizaccess_invigilator" AND filearea = "picture"
-AND filename = :filename';
+                $filesql = 'SELECT * FROM {files} WHERE component = "quizaccess_invigilator" AND filearea = "picture"'.
+                ' AND filename = :filename';
                 $params = array();
                 $params["filename"] = $filename;
                 $usersfiles = $DB->get_records_sql($filesql, $params);

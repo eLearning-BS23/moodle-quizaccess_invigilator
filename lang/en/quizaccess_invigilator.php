@@ -1,4 +1,18 @@
 <?php
+// This file is part of Moodle invigilator for Moodle - http://moodle.org/
+//
+// Moodle invigilator is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle invigilator is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with MailTest.  If not, see <http://www.gnu.org/licenses/>.
 /**
  * Strings for the quizaccess_invigilator plugin.
  *
@@ -40,3 +54,7 @@ $string['settings:deleteallsuccess'] = 'Screenshots deleted successfully';
 $string['reportidheader'] = "Row ID";
 $string['coursenameheader'] = "Course Name";
 $string['quiznameheader'] = "Quiz Name";
+$string['alert:screensharemsg'] = "Please share entire screen.";
+$string['alert:restartattemptcommand'] = "Sorry !! You need to restart the attempt as you have stopped the screenshare.";
+$string['alert:somethingwentwrong'] = "Something went wrong during taking the image.";
+
