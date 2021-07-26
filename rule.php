@@ -78,9 +78,9 @@ class quizaccess_invigilator extends quiz_access_rule_base
 
         $screenhtml = get_string('screenhtml', 'quizaccess_invigilator');
         $screensharemsg = get_string('screensharemsg', 'quizaccess_invigilator');
-        $html = "<div style='margin: auto !important;padding: 30px !important;'><table><tr>
-<td colspan='2'>$header</td></tr><tr><td colspan='2'>$screensharemsg</td></tr><tr>
-<td colspan='2'>$screenhtml</td></tr></table></div>";
+        $html = "<div style='margin: auto !important;padding: 30px !important;'><table><tr>".
+        "<td colspan='2'>$header</td></tr><tr><td colspan='2'>$screensharemsg</td></tr><tr>".
+        "<td colspan='2'>$screenhtml</td></tr></table></div>";
         return $html;
     }
 
@@ -105,6 +105,9 @@ class quizaccess_invigilator extends quiz_access_rule_base
         $record["quizid"] = (int)$coursedata['quizid'];
         $record["screenshotdelay"] = (int)$screenshotdelay;
         $record["screenshotwidth"] = (int)$screenshotwidth;
+        $record["screensharemsg"] = get_string('alert:screensharemsg', 'quizaccess_invigilator');
+        $record["restartattemptcommand"] = get_string('alert:restartattemptcommand', 'quizaccess_invigilator');
+        $record["somethingwentwrong"] = get_string('alert:somethingwentwrong', 'quizaccess_invigilator');
 
         $PAGE->requires->js_call_amd('quizaccess_invigilator/startattempt', 'setup', array($record));
         $attributesarray = $mform->_attributes;
@@ -114,8 +117,9 @@ class quizaccess_invigilator extends quiz_access_rule_base
         $screensharebtnlabel = get_string('sharescreenbtnlabel', 'quizaccess_invigilator');
         $modalcontent = $this->make_modal_content();
         $actionbtns = "<button id='invigilator-share-screen-btn' style='margin: 5px'>".$screensharebtnlabel."</button>";
-        $hiddenvalue = "<input id='invigilator_window_surface' value='' type='hidden'/><input id='invigilator_share_state' value='' type='hidden'/>
-<input id='invigilator_screen_off_flag' value='0' type='hidden'/>";
+        $hiddenvalue = "<input id='invigilator_window_surface' value='' type='hidden'/>".
+        "<input id='invigilator_share_state' value='' type='hidden'/>".
+        "<input id='invigilator_screen_off_flag' value='0' type='hidden'/>";
 
         $mform->addElement('static', 'modalcontent', '', $modalcontent);
         $mform->addElement('static', 'actionbtns', '', $actionbtns);
@@ -264,8 +268,12 @@ class quizaccess_invigilator extends quiz_access_rule_base
      */
     public function description() {
         global $PAGE;
-        $record = new stdClass();
-        $record->allowscreenshare = get_string('warning:allowscreenshare', 'quizaccess_invigilator');
+        $record = array();
+        $record["allowscreenshare"] = get_string('warning:allowscreenshare', 'quizaccess_invigilator');
+        $record["screensharemsg"] = get_string('alert:screensharemsg', 'quizaccess_invigilator');
+        $record["restartattemptcommand"] = get_string('alert:restartattemptcommand', 'quizaccess_invigilator');
+        $record["somethingwentwrong"] = get_string('alert:somethingwentwrong', 'quizaccess_invigilator');
+
         $PAGE->requires->js_call_amd('quizaccess_invigilator/startattempt', 'init', array($record));
         $messages = [get_string('invigilatorheader', 'quizaccess_invigilator')];
 

@@ -47,20 +47,22 @@ $PAGE->navbar->add('Invigilator Report', $url);
 
 echo $OUTPUT->header();
 
-$coursewisesummarysql = 'SELECT MC.fullname as coursefullname, MC.shortname as courseshortname, MQL.courseid, COUNT(MQL.id) as logcount
-FROM {quizaccess_invigilator_logs} MQL JOIN {course} MC ON MQL.courseid = MC.id GROUP BY courseid,coursefullname,courseshortname';
+$coursewisesummarysql = 'SELECT MC.fullname as coursefullname, MC.shortname as courseshortname, MQL.courseid,'.
+'COUNT(MQL.id) as logcount FROM {quizaccess_invigilator_logs} MQL'.
+' JOIN {course} MC ON MQL.courseid = MC.id GROUP BY courseid,coursefullname,courseshortname';
 $coursesummary = $DB->get_records_sql($coursewisesummarysql);
 
 
-$quizsummarysql = 'SELECT MQLS.quizid as quizid, MQS.name, MQLS.courseid, COUNT(MQLS.id) as scount
-FROM {quizaccess_invigilator_logs} MQLS JOIN {course_modules} CMS ON MQLS.cmid = CMS.id JOIN {quiz} MQS ON CMS.instance = MQS.id GROUP BY MQS.id';
+$quizsummarysql = 'SELECT MQLS.quizid as quizid, MQS.name, MQLS.courseid, COUNT(MQLS.id) as scount'.
+' FROM {quizaccess_invigilator_logs} MQLS'.
+' JOIN {course_modules} CMS ON MQLS.cmid = CMS.id JOIN {quiz} MQS ON CMS.instance = MQS.id GROUP BY MQS.id';
 $quizsummary = $DB->get_records_sql($quizsummarysql);
 
 echo '<div class="box generalbox m-b-1 adminerror alert alert-info p-y-1">'
-    . get_string('summarypagedesc', 'quizaccess_invigilator') . '</div>';
+. get_string('summarypagedesc', 'quizaccess_invigilator') . '</div>';
 
-echo '<table class="flexible table table_class"><thead><th colspan="2">Course Name / Quiz Name</th>
-<th>Number of screenshots</th><th>Delete</th></thead>';
+echo '<table class="flexible table table_class"><thead><th colspan="2">Course Name / Quiz Name</th>'.
+'<th>Number of screenshots</th><th>Delete</th></thead>';
 
 echo '<tbody>';
 
@@ -107,5 +109,7 @@ foreach ($coursesummary as $row) {
     }
 }
 echo '</tbody></table>';
-echo '<style>.table_class{ font-family: arial, sans-serif; border-collapse: collapse; width: 100%; } .course-row{ background-color: #dddddd; border: none;} 
-.quiz-row{ background-color: #ffffff; border: none; } .no-border{ border: none !important; border-top: none !important;} </style>';
+echo '<style>.table_class{ font-family: arial, sans-serif; border-collapse: collapse; width: 100%; }'.
+' .course-row{ background-color: #dddddd; border: none;}'.
+'.quiz-row{ background-color: #ffffff; border: none; } '.
+'.no-border{ border: none !important; border-top: none !important;} </style>';

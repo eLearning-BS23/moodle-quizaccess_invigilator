@@ -105,8 +105,8 @@ $table->setup();
 
 $con = "return confirm('Are you sure want to delete ?');";
 $searchrow = array();
-$searchrow[] = 'Select All &nbsp<input type="checkbox" id="select_all" name="select_all" value="0"><br/>
-<button id="delete_select_btn" onclick="'.$con.'" style="display: none;">Delete</button>';
+$searchrow[] = 'Select All &nbsp<input type="checkbox" id="select_all" name="select_all" value="0"><br/>'.
+'<button id="delete_select_btn" onclick="'.$con.'" style="display: none;">Delete</button>';
 $searchrow[] = '<input type="text" placeholder="user name" id="uname" name="uname" value="'.$username.'">';
 $searchrow[] = '<input type="text" placeholder="email" id="email" name="email" value="'.$email.'">';
 $searchrow[] = '<input type="text" placeholder="coursename" id="coursename" name="coursename" value="'.$coursename.'">';

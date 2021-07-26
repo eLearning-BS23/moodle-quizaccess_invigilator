@@ -60,8 +60,7 @@ function quizaccess_invigilator_pluginfile($course, $cm, $context, $filearea, $a
 function get_invigilator_settings($settingtype) {
     $value = "";
     global $DB;
-    $settingssql = "SELECT * FROM {config_plugins} 
-WHERE plugin = 'quizaccess_invigilator' AND name = '$settingtype'";
+    $settingssql = "SELECT * FROM {config_plugins} WHERE plugin = 'quizaccess_invigilator' AND name = '$settingtype'";
     $settingsdata = $DB->get_records_sql($settingssql);
     if (count($settingsdata) > 0) {
         foreach ($settingsdata as $row) {

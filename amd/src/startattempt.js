@@ -8,6 +8,9 @@ define(['jquery', 'core/ajax', 'core/notification'],
 
                 const videoElem = document.getElementById("invigilator-video-screen");
                 const logElem = document.getElementById("invigilator-log-screen");
+                const screensharemsg = props.screensharemsg;
+                const restartattemptcommand = props.restartattemptcommand;
+                const somethingwentwrong = props.somethingwentwrong;
 
                 var displayMediaOptions = {
                     video: {
@@ -36,7 +39,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                         let errString = err.toString();
                         if (errString == "NotAllowedError: Permission denied") {
                             Notification.addNotification({
-                                message: "Please share entire screen.",
+                                message: screensharemsg,
                                 type: 'error'
                             });
                             return false;
@@ -68,11 +71,9 @@ define(['jquery', 'core/ajax', 'core/notification'],
                 var takeScreenshot = function() {
                     var screenoff = document.getElementById('invigilator_screen_off_flag').value;
                     if (videoElem.srcObject !== null) {
-                        // Console.log(videoElem);
                         const videoTrack = videoElem.srcObject.getVideoTracks()[0];
                         var currentStream = videoElem.srcObject;
                         var active = currentStream.active;
-                        // Console.log(active);
 
                         var settings = videoTrack.getSettings();
                         var displaySurface = settings.displaySurface;
@@ -80,7 +81,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                         if (screenoff == "0") {
                             if (!active) {
                                 Notification.addNotification({
-                                    message: "Sorry !! You need to restart the attempt as you have stopped the screenshare.",
+                                    message: restartattemptcommand,
                                     type: 'error'
                                 });
                                 clearInterval(screenShotInterval);
@@ -90,7 +91,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
 
                             if (displaySurface !== "monitor") {
                                 Notification.addNotification({
-                                    message: "Sorry !! You need to share entire screen.",
+                                    message: screensharemsg,
                                     type: 'error'
                                 });
                                 clearInterval(screenShotInterval);
@@ -138,7 +139,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                                 } else {
                                     if (videoScreen) {
                                         Notification.addNotification({
-                                            message: 'Something went wrong during taking the image.',
+                                            message: somethingwentwrong,
                                             type: 'error'
                                         });
                                         clearInterval(screenShotInterval);
@@ -164,12 +165,12 @@ define(['jquery', 'core/ajax', 'core/notification'],
                 var windowState = setInterval(updateWindowStatus, 1000);
                 var screenShotInterval = setInterval(takeScreenshot, props.screenshotdelay * 1000);
             },
-            init: function() {
+            init: function(props) {
                 $('#id_submitbutton').prop("disabled", true);
                 $('#id_invigilator').css("display", 'none');
                 $("label[for='id_invigilator']").css("display", 'none');
 
-
+                const screensharemsg = props.screensharemsg;
                 $('#id_invigilator').click(function() {
                     if (!$(this).is(':checked')) {
                         hideButtons();
@@ -180,7 +181,7 @@ define(['jquery', 'core/ajax', 'core/notification'],
                             showButtons();
                         } else {
                             Notification.addNotification({
-                                message: 'Please click share screen and choose entire monitor.',
+                                message: screensharemsg,
                                 type: 'error'
                             });
                         }

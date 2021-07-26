@@ -54,3 +54,7 @@ $string['settings:deleteallsuccess'] = 'Screenshots deleted successfully';
 $string['reportidheader'] = "Row ID";
 $string['coursenameheader'] = "Course Name";
 $string['quiznameheader'] = "Quiz Name";
+$string['alert:screensharemsg'] = "Please share entire screen.";
+$string['alert:restartattemptcommand'] = "Sorry !! You need to restart the attempt as you have stopped the screenshare.";
+$string['alert:somethingwentwrong'] = "Something went wrong during taking the image.";
+

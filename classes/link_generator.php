@@ -40,7 +40,7 @@ class link_generator {
      *
      * @param string $courseid Course ID.
      * @param string $cmid Course module ID.
-     * @param bool $invigilator Whether to use a proctoring:// scheme or fall back to http:// scheme.
+     * @param bool $proctoring Whether to use a proctoring:// scheme or fall back to http:// scheme.
      * @param bool $secure Whether to use HTTPS or HTTP protocol.
      * @return string A URL.
      */
