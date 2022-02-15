@@ -57,7 +57,7 @@ function quizaccess_invigilator_pluginfile($course, $cm, $context, $filearea, $a
  * @param String $settingtype the settingstype.
  * @return String.
  */
-function get_invigilator_settings($settingtype) {
+function quizaccess_invigilator_get_invigilator_settings($settingtype) {
     $value = "";
     global $DB;
     $settingssql = "SELECT * FROM {config_plugins} WHERE plugin = 'quizaccess_invigilator' AND name = '$settingtype'";

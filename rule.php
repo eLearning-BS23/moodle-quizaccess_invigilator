@@ -96,8 +96,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
     public function add_preflight_check_form_fields(mod_quiz_preflight_check_form $quizform, MoodleQuickForm $mform, $attemptid) {
         global $PAGE;
         $coursedata = $this->get_courseid_cmid_from_preflight_form();
-        $screenshotdelay = get_invigilator_settings('screenshotdelay');
-        $screenshotwidth = get_invigilator_settings('screenshotwidth');
+        $screenshotdelay = quizaccess_invigilator_get_invigilator_settings('screenshotdelay');
+        $screenshotwidth = quizaccess_invigilator_get_invigilator_settings('screenshotwidth');
 
         $record = array();
         $record["courseid"] = (int)$coursedata['courseid'];
@@ -301,8 +301,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
         global $DB, $COURSE, $USER;
         if ($cmid) {
             // Get Screenshot Delay and Image Width.
-            $screenshotdelay = get_invigilator_settings('screenshotdelay');
-            $screenshotwidth = get_invigilator_settings('screenshotwidth');
+            $screenshotdelay = quizaccess_invigilator_get_invigilator_settings('screenshotdelay');
+            $screenshotwidth = quizaccess_invigilator_get_invigilator_settings('screenshotwidth');
             $quizurl = new moodle_url("/mod/quiz/view.php", array("id" => $this->quiz->cmid));
 
             $record = new stdClass();
