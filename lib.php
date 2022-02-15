@@ -54,18 +54,11 @@ function quizaccess_invigilator_pluginfile($course, $cm, $context, $filearea, $a
 /**
  * Get invigilator settings values.
  *
- * @param String $settingtype the settingstype.
- * @return String.
+ * @param string $settingtype the settingstype.
+ * @return string.
+ * @throws dml_exception
  */
 function quizaccess_invigilator_get_invigilator_settings($settingtype) {
-    $value = "";
-    global $DB;
-    $settingssql = "SELECT * FROM {config_plugins} WHERE plugin = 'quizaccess_invigilator' AND name = '$settingtype'";
-    $settingsdata = $DB->get_records_sql($settingssql);
-    if (count($settingsdata) > 0) {
-        foreach ($settingsdata as $row) {
-            $value = $row->value;
-        }
-    }
-    return $value;
+    // Get the setting value from the 'config_plugins' table.
+    return get_config('quizaccess_invigilator', $settingtype);
 }
