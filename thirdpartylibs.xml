@@ -6,4 +6,10 @@
         <version>2.11.3</version>
         <license>MIT</license>
     </library>
+    <library>
+        <location>assets/Roboto-Light.ttf</location>
+        <name>Roboto</name>
+        <version>2.138</version>
+        <license>Apache License 2.0</license>
+    </library>
 </libraries>
