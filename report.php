@@ -23,8 +23,8 @@
 
 
 require_once(__DIR__ . '/../../../../config.php');
-require_once($CFG->dirroot.'/mod/quiz/accessrule/invigilator/lib.php');
-require_once($CFG->libdir.'/tablelib.php');
+require_once($CFG->dirroot . '/mod/quiz/accessrule/invigilator/lib.php');
+require_once($CFG->libdir . '/tablelib.php');
 // Get vars.
 $courseid = required_param('courseid', PARAM_INT);
 $cmid = required_param('cmid', PARAM_INT);
@@ -36,7 +36,7 @@ $logaction = optional_param('logaction', '', PARAM_TEXT);
 
 $context = context_module::instance($cmid, MUST_EXIST);
 
-list ($course, $cm) = get_course_and_cm_from_cmid($cmid, 'quiz');
+list($course, $cm) = get_course_and_cm_from_cmid($cmid, 'quiz');
 
 require_login($course, true, $cm);
 
@@ -74,44 +74,45 @@ $PAGE->set_heading($COURSE->fullname . ': ' . get_string('pluginname', 'quizacce
 
 $PAGE->navbar->add(get_string('quizaccess_invigilator_label', 'quizaccess_invigilator'), $navurl);
 
-$PAGE->requires->js_call_amd( 'quizaccess_invigilator/lightbox2');
+$PAGE->requires->js_call_amd('quizaccess_invigilator/lightbox2');
 
 $settingsbtn = "";
 $logbtn = "";
 
 if (has_capability('quizaccess/invigilator:deletescreenshot', $context, $USER->id)) {
-    $settingspageurl = $CFG->wwwroot . '/mod/quiz/accessrule/invigilator/invigilatorsummary.php?cmid='.$cmid;
+    $settingspageurl = $CFG->wwwroot . '/mod/quiz/accessrule/invigilator/invigilatorsummary.php?cmid=' . $cmid;
     $settingsbtnlabel = "Invigilator Summary Report";
-    $settingsbtn = '<a class="btn btn-primary" href="'.$settingspageurl.'">'.$settingsbtnlabel.'</a>';
+    $settingsbtn = '<a class="btn btn-primary" href="' . $settingspageurl . '">' . $settingsbtnlabel . '</a>';
 
-    $logpageurl = $CFG->wwwroot . '/mod/quiz/accessrule/invigilator/additional_settings.php?cmid='.$cmid;
+    $logpageurl = $CFG->wwwroot . '/mod/quiz/accessrule/invigilator/additional_settings.php?cmid=' . $cmid;
     $logbtnlabel = "Invigilator Logs";
-    $logbtn = '<a class="btn btn-primary" style="margin-left:5px" href="'.$logpageurl.'">'.$logbtnlabel.'</a>';
+    $logbtn = '<a class="btn btn-primary" style="margin-left:5px" href="' . $logpageurl . '">' . $logbtnlabel . '</a>';
 }
 
 if ($submittype == 'Search' && $searchkey != null) {
     $searchform = '<form action="' . $CFG->wwwroot
-    . '/mod/quiz/accessrule/invigilator/report.php"><input type="hidden" id="courseid" name="courseid" value="'
-    . $courseid . '"><input type="hidden" id="cmid" name="cmid" value="' . $cmid
-    . '"><input style="width:250px" type="text" id="searchKey" name="searchKey" placeholder="Search by email" value="'
-    . $searchkey . '"><input type="submit" name="submitType" value="Search">'
-    .'<input type="submit" name="submitType" value="clear"></form>';
+        . '/mod/quiz/accessrule/invigilator/report.php"><input type="hidden" id="courseid" name="courseid" value="'
+        . $courseid . '"><input type="hidden" id="cmid" name="cmid" value="' . $cmid
+        . '"><input style="width:250px" type="text" id="searchKey" name="searchKey" placeholder="Search by email" value="'
+        . $searchkey . '"><input type="submit" name="submitType" value="Search">'
+        . '<input type="submit" name="submitType" value="clear"></form>';
 } else if ($submittype == 'clear') {
     $searchform = '<form action="'
-    . $CFG->wwwroot . '/mod/quiz/accessrule/invigilator/report.php"><input type="hidden" id="courseid" name="courseid" value="'
-    . $courseid . '"><input type="hidden" id="cmid" name="cmid" value="'
-    . $cmid . '"><input style="width:250px" type="text" id="searchKey" name="searchKey" placeholder="Search by email">'
-    .'<input type="submit" name="submitType" value="Search"></form>';
+        . $CFG->wwwroot . '/mod/quiz/accessrule/invigilator/report.php"><input type="hidden" id="courseid" name="courseid" value="'
+        . $courseid . '"><input type="hidden" id="cmid" name="cmid" value="'
+        . $cmid . '"><input style="width:250px" type="text" id="searchKey" name="searchKey" placeholder="Search by email">'
+        . '<input type="submit" name="submitType" value="Search"></form>';
 } else {
     $searchform = '<form action="'
-    . $CFG->wwwroot . '/mod/quiz/accessrule/invigilator/report.php"><input type="hidden" id="courseid" name="courseid" value="'
-    . $courseid . '"><input type="hidden" id="cmid" name="cmid" value="'
-    . $cmid . '">'
-    .'<input style="width:250px" type="text" id="searchKey" name="searchKey" placeholder="Search by email">'
-    .'<input type="submit" name="submitType" value="Search"></form>';
+        . $CFG->wwwroot . '/mod/quiz/accessrule/invigilator/report.php"><input type="hidden" id="courseid" name="courseid" value="'
+        . $courseid . '"><input type="hidden" id="cmid" name="cmid" value="'
+        . $cmid . '">'
+        . '<input style="width:250px" type="text" id="searchKey" name="searchKey" placeholder="Search by email">'
+        . '<input type="submit" name="submitType" value="Search"></form>';
 }
 
-if (has_capability('quizaccess/invigilator:deletescreenshot', $context, $USER->id)
+if (
+    has_capability('quizaccess/invigilator:deletescreenshot', $context, $USER->id)
     && $studentid != null
     && $cmid != null
     && $courseid != null
@@ -120,8 +121,8 @@ if (has_capability('quizaccess/invigilator:deletescreenshot', $context, $USER->i
 ) {
     $DB->delete_records('quizaccess_invigilator_logs', array('courseid' => $courseid, 'cmid' => $cmid, 'userid' => $studentid));
     // Delete users file (webcam images).
-    $filesql = 'SELECT * FROM {files} WHERE userid = :studentid  AND contextid = :contextid'.
-    ' AND component = \'quizaccess_invigilator\' AND filearea = \'picture\'';
+    $filesql = 'SELECT * FROM {files} WHERE userid = :studentid  AND contextid = :contextid' .
+        ' AND component = \'quizaccess_invigilator\' AND filearea = \'picture\'';
 
     $params = array();
     $params["studentid"] = $studentid;
@@ -130,7 +131,7 @@ if (has_capability('quizaccess/invigilator:deletescreenshot', $context, $USER->i
     $usersfile = $DB->get_records_sql($filesql, $params);
 
     $fs = get_file_storage();
-    foreach ($usersfile as $file):
+    foreach ($usersfile as $file) :
         // Prepare file record object.
         $fileinfo = array(
             'component' => 'quizaccess_invigilator',
@@ -138,11 +139,18 @@ if (has_capability('quizaccess/invigilator:deletescreenshot', $context, $USER->i
             'itemid' => $file->itemid,               // Usually = ID of row in table.
             'contextid' => $context->id, // ID of context.
             'filepath' => '/',           // Any path beginning and ending in /.
-            'filename' => $file->filename); // Any filename.
+            'filename' => $file->filename
+        ); // Any filename.
 
         // Get file.
-        $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
-            $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
+        $file = $fs->get_file(
+            $fileinfo['contextid'],
+            $fileinfo['component'],
+            $fileinfo['filearea'],
+            $fileinfo['itemid'],
+            $fileinfo['filepath'],
+            $fileinfo['filename']
+        );
 
         // Delete it if it exists.
         if ($file) {
@@ -156,57 +164,58 @@ if (has_capability('quizaccess/invigilator:deletescreenshot', $context, $USER->i
             'cmid' => $cmid
         )
     );
-    redirect($url2, 'Images deleted!', -11);
+    redirect($url2, get_string('imgdlt', 'quizaccess_invigilator'), -11);
 }
 
 echo $OUTPUT->header();
 echo '<div id="main"><h2>' . get_string('invigilatorreports', 'quizaccess_invigilator') . ''
-. $quiz->name . '</h2>'.'<br/><br/><div style="float: left">'.$searchform.'</div>'.'<div style="float: right">'
-.$settingsbtn.$logbtn.'</div><br/><br/><div class="box generalbox m-b-1 adminerror alert alert-info p-y-1">'
-. get_string('screenshot', 'quizaccess_invigilator') . '</div>';
+    . $quiz->name . '</h2>' . '<br/><br/><div style="float: left">' . $searchform . '</div>' . '<div style="float: right">'
+    . $settingsbtn . $logbtn . '</div><br/><br/><div class="box generalbox m-b-1 adminerror alert alert-info p-y-1">'
+    . get_string('screenshot', 'quizaccess_invigilator') . '</div>';
 
 // Report print.
 if (
     has_capability('quizaccess/invigilator:viewreport', $context, $USER->id) &&
     $cmid != null &&
-    $courseid != null) {
+    $courseid != null
+) {
 
     // Check if report if for some user.
     if ($studentid != null && $cmid != null && $courseid != null && $reportid != null) {
         // Report for this user.
-        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot, e.timecreated as timecreated, ".
-        "u.firstname as firstname, u.lastname as lastname, u.email as email".
-        " FROM  {quizaccess_invigilator_logs} e INNER JOIN {user} u  ON u.id = e.userid"
-        ." WHERE e.courseid = '$courseid' AND e.cmid = '$cmid' AND u.id = '$studentid' AND e.id = '$reportid'";
+        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot, e.timecreated as timecreated, " .
+            "u.firstname as firstname, u.lastname as lastname, u.email as email" .
+            " FROM  {quizaccess_invigilator_logs} e INNER JOIN {user} u  ON u.id = e.userid"
+            . " WHERE e.courseid = '$courseid' AND e.cmid = '$cmid' AND u.id = '$studentid' AND e.id = '$reportid'";
     }
 
     if ($studentid == null && $cmid != null && $courseid != null) {
         // Report for all users.
-        $sql = "SELECT DISTINCT e.userid as studentid, u.firstname as firstname, u.lastname as lastname, u.email as email,".
-        " max(e.screenshot) as screenshot, max(e.id) as reportid, max(e.timecreated) as timecreated".
-        " FROM  {quizaccess_invigilator_logs} e INNER JOIN {user} u ON u.id = e.userid".
-        " WHERE e.courseid = '$courseid' AND e.cmid = '$cmid'".
-        " GROUP BY e.userid, u.firstname, u.lastname, u.email";
+        $sql = "SELECT DISTINCT e.userid as studentid, u.firstname as firstname, u.lastname as lastname, u.email as email," .
+            " max(e.screenshot) as screenshot, max(e.id) as reportid, max(e.timecreated) as timecreated" .
+            " FROM  {quizaccess_invigilator_logs} e INNER JOIN {user} u ON u.id = e.userid" .
+            " WHERE e.courseid = '$courseid' AND e.cmid = '$cmid'" .
+            " GROUP BY e.userid, u.firstname, u.lastname, u.email";
     }
 
     if ($studentid == null && $cmid != null && $searchkey != null && $submittype == "clear") {
         // Report for searched users.
-        $sql = "SELECT DISTINCT e.userid as studentid, u.firstname as firstname, u.lastname as lastname, u.email as email,".
-        " max(e.screenshot) as screenshot, max(e.id) as reportid, max(e.timecreated) as timecreated".
-        " FROM  {quizaccess_invigilator_logs} e INNER JOIN {user} u ON u.id = e.userid".
-        " WHERE e.courseid = '$courseid' AND e.cmid = '$cmid'".
-        " GROUP BY e.userid, u.firstname, u.lastname, u.email";
+        $sql = "SELECT DISTINCT e.userid as studentid, u.firstname as firstname, u.lastname as lastname, u.email as email," .
+            " max(e.screenshot) as screenshot, max(e.id) as reportid, max(e.timecreated) as timecreated" .
+            " FROM  {quizaccess_invigilator_logs} e INNER JOIN {user} u ON u.id = e.userid" .
+            " WHERE e.courseid = '$courseid' AND e.cmid = '$cmid'" .
+            " GROUP BY e.userid, u.firstname, u.lastname, u.email";
     }
 
     if ($studentid == null && $cmid != null && $searchkey != null && $submittype == "Search") {
         // Report for searched users.
-        $sql = "SELECT DISTINCT e.userid as studentid, u.firstname as firstname, u.lastname as lastname, u.email as email,".
-        " max(e.screenshot) as screenshot, max(e.id) as reportid, max(e.timecreated) as timecreated".
-        " FROM  {quizaccess_invigilator_logs} e INNER JOIN {user} u ON u.id = e.userid".
-        " WHERE (e.courseid = '$courseid' AND e.cmid = '$cmid' AND "
-        .$DB->sql_like('u.firstname', ':firstnamelike', false).") OR " ."(e.courseid = '$courseid' AND e.cmid = '$cmid' AND "
-        .$DB->sql_like('u.email', ':emaillike', false).") OR " ."(e.courseid = '$courseid' AND e.cmid = '$cmid' AND "
-        .$DB->sql_like('u.lastname', ':lastnamelike', false) .")group by e.userid, u.firstname, u.lastname, u.email";
+        $sql = "SELECT DISTINCT e.userid as studentid, u.firstname as firstname, u.lastname as lastname, u.email as email," .
+            " max(e.screenshot) as screenshot, max(e.id) as reportid, max(e.timecreated) as timecreated" .
+            " FROM  {quizaccess_invigilator_logs} e INNER JOIN {user} u ON u.id = e.userid" .
+            " WHERE (e.courseid = '$courseid' AND e.cmid = '$cmid' AND "
+            . $DB->sql_like('u.firstname', ':firstnamelike', false) . ") OR " . "(e.courseid = '$courseid' AND e.cmid = '$cmid' AND "
+            . $DB->sql_like('u.email', ':emaillike', false) . ") OR " . "(e.courseid = '$courseid' AND e.cmid = '$cmid' AND "
+            . $DB->sql_like('u.lastname', ':lastnamelike', false) . ")group by e.userid, u.firstname, u.lastname, u.email";
     }
 
     // Print report.
@@ -240,19 +249,19 @@ if (
     foreach ($sqlexecuted as $info) {
         $data = array();
         $data[] = '<a href="' . $CFG->wwwroot . '/user/view.php?id='
-        . $info->studentid . '&course=' . $courseid . '" target="_blank">' . $info->firstname . ' ' . $info->lastname . '</a>';
+            . $info->studentid . '&course=' . $courseid . '" target="_blank">' . $info->firstname . ' ' . $info->lastname . '</a>';
 
         $data[] = $info->email;
 
         $data[] = date("Y/M/d H:m:s", $info->timecreated);
 
         $con = "return confirm('Are you sure want to delete the pictures?');";
-        $btn = '<a onclick="'. $con .'" href="?courseid=' . $courseid . '&quizid=' . $cmid . '&cmid='
-        . $cmid . '&studentid=' . $info->studentid . '&reportid='
-        . $info->reportid . '&logaction=delete"><i class="icon fa fa-trash fa-fw "></i></a>';
+        $btn = '<a onclick="' . $con . '" href="?courseid=' . $courseid . '&quizid=' . $cmid . '&cmid='
+            . $cmid . '&studentid=' . $info->studentid . '&reportid='
+            . $info->reportid . '&logaction=delete"><i class="icon fa fa-trash fa-fw "></i></a>';
         $data[] = '<a href="?courseid=' . $courseid . '&quizid=' . $quiz->id . '&cmid='
-        . $cmid . '&studentid=' . $info->studentid . '&reportid=' . $info->reportid . '">'
-        . '<i class="icon fa fa-folder-o fa-fw "></i>' . '</a>'.$btn;
+            . $cmid . '&studentid=' . $info->studentid . '&reportid=' . $info->reportid . '">'
+            . '<i class="icon fa fa-folder-o fa-fw "></i>' . '</a>' . $btn;
 
         $table->add_data($data);
     }
@@ -262,11 +271,11 @@ if (
     // Print image results.
     if ($studentid != null && $cmid != null && $courseid != null && $reportid != null) {
         $data = array();
-        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot,".
-        " e.timecreated as timecreated, u.firstname as firstname,".
-        " u.lastname as lastname, u.email as email".
-        " FROM {quizaccess_invigilator_logs} e INNER JOIN {user} u  ON u.id = e.userid".
-        " WHERE e.courseid = '$courseid' AND e.cmid = '$cmid' AND u.id = '$studentid'";
+        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot," .
+            " e.timecreated as timecreated, u.firstname as firstname," .
+            " u.lastname as lastname, u.email as email" .
+            " FROM {quizaccess_invigilator_logs} e INNER JOIN {user} u  ON u.id = e.userid" .
+            " WHERE e.courseid = '$courseid' AND e.cmid = '$cmid' AND u.id = '$studentid'";
 
         $sqlexecuted = $DB->get_recordset_sql($sql);
         echo '<h3>' . get_string('picturesusedreport', 'quizaccess_invigilator') . '</h3>';
@@ -297,20 +306,20 @@ if (
 
         foreach ($sqlexecuted as $info) {
             $d = basename($info->screenshot, '.png');
-            $imgid = "reportid-".$info->reportid;
+            $imgid = "reportid-" . $info->reportid;
 
             $pictures .= $info->screenshot ? '<a href="' . $info->screenshot . '" data-lightbox="procImages"' . ' data-title ="'
-            . $info->firstname . ' ' . $info->lastname .'">'. '<img id="'
-            .$imgid.'" width="100" src="' . $info->screenshot . '" alt="'
-            . $info->firstname . ' ' . $info->lastname . '" data-lightbox="'
-            . basename($info->screenshot, '.png') .'"/></a>' : '';
+                . $info->firstname . ' ' . $info->lastname . '">' . '<img id="'
+                . $imgid . '" width="100" src="' . $info->screenshot . '" alt="'
+                . $info->firstname . ' ' . $info->lastname . '" data-lightbox="'
+                . basename($info->screenshot, '.png') . '"/></a>' : '';
         }
 
         $userinfo = '<table border="0" width="110" height="160px">'
-        .'<tr height="120" style="background-color: transparent;"><td style="border: unset;">'
-        .$OUTPUT->user_picture($user, array('size' => 100)).'</td></tr><tr height="50"><td style="border: unset;"><b>'
-        . $info->firstname . ' ' . $info->lastname . '</b></td></tr><tr height="50"><td style="border: unset;"><b>'
-        . $info->email . '</b></td></tr></table>';
+            . '<tr height="120" style="background-color: transparent;"><td style="border: unset;">'
+            . $OUTPUT->user_picture($user, array('size' => 100)) . '</td></tr><tr height="50"><td style="border: unset;"><b>'
+            . $info->firstname . ' ' . $info->lastname . '</b></td></tr><tr height="50"><td style="border: unset;"><b>'
+            . $info->email . '</b></td></tr></table>';
 
         $datapictures = array(
             $userinfo,
@@ -319,7 +328,6 @@ if (
         $tablepictures->add_data($datapictures);
         $tablepictures->finish_html();
     }
-
 } else {
     // User has not permissions to view this page.
     echo '<div class="box generalbox m-b-1 adminerror alert alert-danger p-y-1">' .

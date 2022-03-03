@@ -44,22 +44,22 @@ $url = new moodle_url(
     $params
 );
 
-list ($course, $cm) = get_course_and_cm_from_cmid($cmid, 'quiz');
+list($course, $cm) = get_course_and_cm_from_cmid($cmid, 'quiz');
 
 require_login($course, true, $cm);
 
 $PAGE->set_url($url);
-$PAGE->set_title('Invigilator logs');
-$PAGE->set_heading('Invigilator Logs');
+$PAGE->set_title(get_string('invigilator:logs', 'quizaccess_invigilator'));
+$PAGE->set_heading(get_string('invigilator:Logs', 'quizaccess_invigilator'));
 
-$PAGE->navbar->add('Invigilator Logs', $url);
+$PAGE->navbar->add(get_string('invigilator:Logs', 'quizaccess_invigilator'), $url);
 $PAGE->requires->js_call_amd('quizaccess_invigilator/additionalSettings', 'setup', array());
 
 echo $OUTPUT->header();
 $formurl = new moodle_url('/mod/quiz/accessrule/invigilator/additional_settings.php');
 
-echo '<form method="GET" id="my_form" action="'.$formurl.'">';
-echo '<input type="hidden" id="cmid" name="cmid" value="'.$cmid.'">';
+echo '<form method="GET" id="my_form" action="' . $formurl . '">';
+echo '<input type="hidden" id="cmid" name="cmid" value="' . $cmid . '">';
 echo '<input type="hidden" id="deleteidstring" name="deleteidstring" value="">';
 echo '<input type="hidden" name="form_type" value="Delete">';
 
@@ -74,7 +74,7 @@ if ($formtype == 'Search') {
             'cmid' => $cmid
         )
     );
-    redirect($url2, 'Images deleted!', -11);
+    redirect($url2,  get_string('imgdlt', 'quizaccess_invigilator'), -11);
 } else {
     // Prepare data.
     $sqlexecuted = array();
@@ -105,25 +105,25 @@ $table->setup();
 
 $con = "return confirm('Are you sure want to delete ?');";
 $searchrow = array();
-$searchrow[] = 'Select All &nbsp<input type="checkbox" id="select_all" name="select_all" value="0"><br/>'.
-'<button id="delete_select_btn" onclick="'.$con.'" style="display: none;">Delete</button>';
-$searchrow[] = '<input type="text" placeholder="user name" id="uname" name="uname" value="'.$username.'">';
-$searchrow[] = '<input type="text" placeholder="email" id="email" name="email" value="'.$email.'">';
-$searchrow[] = '<input type="text" placeholder="coursename" id="coursename" name="coursename" value="'.$coursename.'">';
-$searchrow[] = '<input type="text" placeholder="quizname" id="quizname" name="quizname" value="'.$quizname.'">';
+$searchrow[] = 'Select All &nbsp<input type="checkbox" id="select_all" name="select_all" value="0"><br/>' .
+    '<button id="delete_select_btn" onclick="' . $con . '" style="display: none;">Delete</button>';
+$searchrow[] = '<input type="text" placeholder="user name" id="uname" name="uname" value="' . $username . '">';
+$searchrow[] = '<input type="text" placeholder="email" id="email" name="email" value="' . $email . '">';
+$searchrow[] = '<input type="text" placeholder="coursename" id="coursename" name="coursename" value="' . $coursename . '">';
+$searchrow[] = '<input type="text" placeholder="quizname" id="quizname" name="quizname" value="' . $quizname . '">';
 $searchrow[] = '';
 $searchrow[] = '<input type="submit" name="form_type" value="Search">';
 $table->add_data($searchrow);
 
 foreach ($sqlexecuted as $info) {
     $reporturl = new moodle_url('/mod/quiz/accessrule/invigilator/report.php');
-    $folderbtn = '<a target="_blank" href="'.$reporturl.'?courseid=' . $info->courseid .
+    $folderbtn = '<a target="_blank" href="' . $reporturl . '?courseid=' . $info->courseid .
         '&quizid=' . $info->quizid . '&cmid=' . $cmid . '&studentid=' . $info->studentid . '&reportid=' . $info->reportid . '">' .
         '<i class="icon fa fa-folder-o fa-fw "></i>' . '</a>';
 
 
     $data = array();
-    $data[] = $info->reportid.'<input type="checkbox" class ="reportIdChkBox" value="'.$info->reportid.'">';
+    $data[] = $info->reportid . '<input type="checkbox" class ="reportIdChkBox" value="' . $info->reportid . '">';
     $data[] = $info->firstname . ' ' . $info->lastname;
     $data[] = $info->email;
     $data[] = $info->coursename;
