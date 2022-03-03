@@ -2,7 +2,7 @@ body.lb-disable-scrolling {
     overflow: hidden;
 }
 
-.lightboxOverlay {
+.path-mod-quiz-accessrule-invigilator .lightboxOverlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,7 +15,7 @@ body.lb-disable-scrolling {
     display: none;
 }
 
-.lightbox {
+.path-mod-quiz-accessrule-invigilator .lightbox {
     position: absolute;
     left: 0;
     width: 100%;
@@ -26,7 +26,7 @@ body.lb-disable-scrolling {
     outline: none;
 }
 
-.lightbox .lb-image {
+.path-mod-quiz-accessrule-invigilator .lightbox .lb-image {
     display: block;
     height: auto;
     max-width: inherit;
@@ -37,11 +37,11 @@ body.lb-disable-scrolling {
     border: 4px solid white;
 }
 
-.lightbox a img {
+.path-mod-quiz-accessrule-invigilator .lightbox a img {
     border: none;
 }
 
-.lb-outerContainer {
+.path-mod-quiz-accessrule-invigilator .lb-outerContainer {
     position: relative;
     *zoom: 1;
     width: 250px;
@@ -54,13 +54,13 @@ body.lb-disable-scrolling {
     background-color: white;
 }
 
-.lb-outerContainer:after {
+.path-mod-quiz-accessrule-invigilator .lb-outerContainer:after {
     content: "";
     display: table;
     clear: both;
 }
 
-.lb-loader {
+.path-mod-quiz-accessrule-invigilator .lb-loader {
     position: absolute;
     top: 43%;
     left: 0;
@@ -70,7 +70,7 @@ body.lb-disable-scrolling {
     line-height: 0;
 }
 
-.lb-cancel {
+.path-mod-quiz-accessrule-invigilator .lb-cancel {
     display: block;
     width: 32px;
     height: 32px;
@@ -78,7 +78,7 @@ body.lb-disable-scrolling {
     background: url(/mod/quiz/accessrule/invigilator/pix/loading.gif) no-repeat;
 }
 
-.lb-nav {
+.path-mod-quiz-accessrule-invigilator .lb-nav {
     position: absolute;
     top: 0;
     left: 0;
@@ -87,25 +87,25 @@ body.lb-disable-scrolling {
     z-index: 10;
 }
 
-.lb-container > .nav {
+.path-mod-quiz-accessrule-invigilator .lb-container > .nav {
     left: 0;
 }
 
-.lb-nav a {
+.path-mod-quiz-accessrule-invigilator .lb-nav a {
     outline: none;
     /* stylelint-disable */
     background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
     /* stylelint-enable */
 }
 
-.lb-prev,
+.path-mod-quiz-accessrule-invigilator .lb-prev,
 .lb-next {
     height: 100%;
     cursor: pointer;
     display: block;
 }
 
-.lb-nav a.lb-prev {
+.path-mod-quiz-accessrule-invigilator .lb-nav a.lb-prev {
     width: 34%;
     left: 0;
     float: left;
@@ -120,14 +120,14 @@ body.lb-disable-scrolling {
     transition: opacity 0.6s;
 }
 
-.lb-nav a.lb-prev:hover {
+.path-mod-quiz-accessrule-invigilator .lb-nav a.lb-prev:hover {
     /* stylelint-disable */
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     /* stylelint-enable */
     opacity: 1;
 }
 
-.lb-nav a.lb-next {
+.path-mod-quiz-accessrule-invigilator .lb-nav a.lb-next {
     width: 64%;
     right: 0;
     float: right;
@@ -142,14 +142,14 @@ body.lb-disable-scrolling {
     transition: opacity 0.6s;
 }
 
-.lb-nav a.lb-next:hover {
+.path-mod-quiz-accessrule-invigilator .lb-nav a.lb-next:hover {
     /* stylelint-disable */
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     /* stylelint-enable */
     opacity: 1;
 }
 
-.lb-dataContainer {
+.path-mod-quiz-accessrule-invigilator .lb-dataContainer {
     margin: 0 auto;
     padding-top: 5px;
     *zoom: 1;
@@ -158,35 +158,35 @@ body.lb-disable-scrolling {
     border-bottom-right-radius: 4px;
 }
 
-.lb-dataContainer:after {
+.path-mod-quiz-accessrule-invigilator .lb-dataContainer:after {
     content: "";
     display: table;
     clear: both;
 }
 
-.lb-data {
+.path-mod-quiz-accessrule-invigilator .lb-data {
     padding: 0 4px;
     color: #ccc;
 }
 
-.lb-data .lb-details {
+.path-mod-quiz-accessrule-invigilator .lb-data .lb-details {
     width: 85%;
     float: left;
     text-align: left;
     line-height: 1.1em;
 }
 
-.lb-data .lb-caption {
+.path-mod-quiz-accessrule-invigilator .lb-data .lb-caption {
     font-size: 13px;
     font-weight: bold;
     line-height: 1em;
 }
 
-.lb-data .lb-caption a {
+.path-mod-quiz-accessrule-invigilator .lb-data .lb-caption a {
     color: #4ae;
 }
 
-.lb-data .lb-number {
+.path-mod-quiz-accessrule-invigilator .lb-data .lb-number {
     display: block;
     clear: left;
     padding-bottom: 1em;
@@ -194,7 +194,7 @@ body.lb-disable-scrolling {
     color: #999;
 }
 
-.lb-data .lb-close {
+.path-mod-quiz-accessrule-invigilator .lb-data .lb-close {
     display: block;
     float: right;
     width: 30px;
@@ -212,7 +212,7 @@ body.lb-disable-scrolling {
     transition: opacity 0.2s;
 }
 
-.lb-data .lb-close:hover {
+.path-mod-quiz-accessrule-invigilator .lb-data .lb-close:hover {
     cursor: pointer;
     /* stylelint-disable */
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
