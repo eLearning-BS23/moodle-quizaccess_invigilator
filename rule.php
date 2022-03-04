@@ -301,8 +301,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
         global $DB, $COURSE, $USER;
         if ($cmid) {
             // Get Screenshot Delay and Image Width.
-            $screenshotdelay = quizaccess_invigilator_get_invigilator_settings('screenshotdelay');
-            $screenshotwidth = quizaccess_invigilator_get_invigilator_settings('screenshotwidth');
+            $screenshotdelay = get_config('quizaccess_invigilator', 'screenshotdelay');
+            $screenshotwidth = get_config('quizaccess_invigilator', 'screenshotwidth');
             $quizurl = new moodle_url("/mod/quiz/view.php", array("id" => $this->quiz->cmid));
 
             $record = new stdClass();
