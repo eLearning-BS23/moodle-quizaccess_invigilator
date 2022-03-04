@@ -240,9 +240,9 @@ if (
     if ($studentid == null && $cmid != null && $searchkey != null && $submittype == "Search") {
         // Report for searched users.
         $params = ['firstnamelike' => "%$searchkey%", 'lastnamelike' => "%$searchkey%", 'emaillike' => "%$searchkey%"];
-        $sqlexecuted = $DB->get_recordset_sql($sql, $params);
+        $sqlexecuted = $DB->get_records_sql($sql, $params);
     } else {
-        $sqlexecuted = $DB->get_recordset_sql($sql);
+        $sqlexecuted = $DB->get_records_sql($sql);
     }
 
 
@@ -277,7 +277,7 @@ if (
             " FROM {quizaccess_invigilator_logs} e INNER JOIN {user} u  ON u.id = e.userid" .
             " WHERE e.courseid = '$courseid' AND e.cmid = '$cmid' AND u.id = '$studentid'";
 
-        $sqlexecuted = $DB->get_recordset_sql($sql);
+        $sqlexecuted = $DB->get_records_sql($sql);
         echo '<h3>' . get_string('picturesusedreport', 'quizaccess_invigilator') . '</h3>';
 
         $tablepictures = new flexible_table('invigilator-report-pictures' . $COURSE->id . '-' . $cmid);
