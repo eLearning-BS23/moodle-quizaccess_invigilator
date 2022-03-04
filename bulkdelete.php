@@ -33,29 +33,28 @@ require_capability('quizaccess/invigilator:deletescreenshot', $context);
 
 $params = array('cmid' => $cmid, 'type' => $type, 'id' => $id);
 $url = new moodle_url(
-'/mod/quiz/accessrule/invigilator/bulkdelete.php',
-$params
+    '/mod/quiz/accessrule/invigilator/bulkdelete.php',
+    $params
 );
 
-list ($course, $cm) = get_course_and_cm_from_cmid($cmid, 'quiz');
+list($course, $cm) = get_course_and_cm_from_cmid($cmid, 'quiz');
 
 require_login($course, true, $cm);
 
 $PAGE->set_url($url);
-$PAGE->set_title('Invigilator:Bulk Delete');
-$PAGE->set_heading('Invigilator Bulk Delete');
+$PAGE->set_title(get_string('invigilator:bulkdelete', 'quizaccess_invigilator'));
+$PAGE->set_heading(get_string('invigilator_bulkdelete', 'quizaccess_invigilator'));
 
-$PAGE->navbar->add('Invigilator: Bulk Delete', $url);
+$PAGE->navbar->add(get_string('invigilator:bulkdelete', 'quizaccess_invigilator'), $url);
 $helper = new addtional_settings_helper();
 echo $OUTPUT->header();
 
 if ($type == 'course') {
     $screenshotdata = $helper->searchssbycourseid($id);
-
 } else if ($type == 'quiz') {
     $screenshotdata = $helper->searchssbyquizid($id);
 } else {
-    echo "invalid type";
+    echo get_string('invalidtype', 'quizaccess_invigilator');
 }
 $ssrowids = array();
 foreach ($screenshotdata as $row) {
@@ -72,4 +71,4 @@ $url = new moodle_url(
     '/mod/quiz/accessrule/invigilator/invigilatorsummary.php',
     $params
 );
-redirect($url, get_string('settings:deleteallsuccess', 'quizaccess_invigilator'), -11, 'success');
+redirect($url, get_string('settings:deleteallsuccess', 'quizaccess_invigilator'), -11, get_string('success', 'quizaccess_invigilator'));

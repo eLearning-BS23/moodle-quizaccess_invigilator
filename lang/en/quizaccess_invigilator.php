@@ -57,4 +57,12 @@ $string['quiznameheader'] = "Quiz Name";
 $string['alert:screensharemsg'] = "Please share entire screen.";
 $string['alert:restartattemptcommand'] = "Sorry !! You need to restart the attempt as you have stopped the screenshare.";
 $string['alert:somethingwentwrong'] = "Something went wrong during taking the image.";
-
+$string['invigilator:bulkdelete'] = 'Invigilator: Bulk Delete';
+$string['invigilator_bulkdelete'] = 'Invigilator Bulk Delete';
+$string['success'] = 'success';
+$string['invalidtype'] = 'invalid type';
+$string['invigilator:logs'] = 'Invigilator logs';
+$string['invigilator:Logs'] = 'Invigilator Logs';
+$string['imgdlt'] = 'Images deleted!';
+$string['invigilator:summery'] = 'Invigilator Summary Report';
+$string['invigilator:report'] = 'Invigilator Report';
