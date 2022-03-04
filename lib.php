@@ -50,22 +50,3 @@ function quizaccess_invigilator_pluginfile($course, $cm, $context, $filearea, $a
     }
     send_stored_file($file, 0, 0, $forcedownload, $options);
 }
-
-/**
- * Get invigilator settings values.
- *
- * @param String $settingtype the settingstype.
- * @return String.
- */
-function get_invigilator_settings($settingtype) {
-    $value = "";
-    global $DB;
-    $settingssql = "SELECT * FROM {config_plugins} WHERE plugin = 'quizaccess_invigilator' AND name = '$settingtype'";
-    $settingsdata = $DB->get_records_sql($settingssql);
-    if (count($settingsdata) > 0) {
-        foreach ($settingsdata as $row) {
-            $value = $row->value;
-        }
-    }
-    return $value;
-}
