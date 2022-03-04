@@ -14,13 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with MailTest.  If not, see <http://www.gnu.org/licenses/>.
 
- /**
-  * additional_settings_helper class.
-  * @package quizaccess_invigilator
-  * @copyright  2021 Brain Station 23
-  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-  */
-class addtional_settings_helper {
+/**
+ * additional_settings_helper class.
+ * @package quizaccess_invigilator
+ * @copyright  2021 Brain Station 23
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class addtional_settings_helper
+{
     /**
      * Search for specific user invigilator log.
      *
@@ -44,16 +45,16 @@ class addtional_settings_helper {
         if ($username !== "") {
             $namesplit = explode(" ", $username);
             if (count($namesplit) > 1) {
-                $namelike1 = "(".$DB->sql_like('u.firstname', ':firstnamelike', false).")";
-                $namelike2 = "(".$DB->sql_like('u.lastname', ':lastnamelike', false).")";
+                $namelike1 = "(" . $DB->sql_like('u.firstname', ':firstnamelike', false) . ")";
+                $namelike2 = "(" . $DB->sql_like('u.lastname', ':lastnamelike', false) . ")";
                 array_push($whereclausearray1, $namelike1);
                 array_push($whereclausearray2, $namelike2);
 
                 $params['firstnamelike'] = $namesplit[0];
                 $params['lastnamelike'] = $namesplit[1];
             } else {
-                $namelike1 = "(".$DB->sql_like('u.firstname', ':firstnamelike', false).")";
-                $namelike2 = "(".$DB->sql_like('u.lastname', ':lastnamelike', false).")";
+                $namelike1 = "(" . $DB->sql_like('u.firstname', ':firstnamelike', false) . ")";
+                $namelike2 = "(" . $DB->sql_like('u.lastname', ':lastnamelike', false) . ")";
                 array_push($whereclausearray1, $namelike1);
                 array_push($whereclausearray2, $namelike2);
 
@@ -64,14 +65,14 @@ class addtional_settings_helper {
 
         if ($email !== "") {
             if ($username !== "") {
-                $emaillike1 = " ( ".$DB->sql_like('u.email', ':emaillike1', false)." ) ";
-                $emaillike2 = " ( ".$DB->sql_like('u.email', ':emaillike2', false)." ) ";
+                $emaillike1 = " ( " . $DB->sql_like('u.email', ':emaillike1', false) . " ) ";
+                $emaillike2 = " ( " . $DB->sql_like('u.email', ':emaillike2', false) . " ) ";
                 array_push($whereclausearray1, $emaillike1);
                 array_push($whereclausearray2, $emaillike2);
                 $params['emaillike1'] = $email;
                 $params['emaillike2'] = $email;
             } else {
-                $emaillike1 = " ( ".$DB->sql_like('u.email', ':emaillike1', false)." ) ";
+                $emaillike1 = " ( " . $DB->sql_like('u.email', ':emaillike1', false) . " ) ";
                 array_push($whereclausearray1, $emaillike1);
                 $params['emaillike1'] = $email;
             }
@@ -79,14 +80,14 @@ class addtional_settings_helper {
 
         if ($coursename !== "") {
             if ($username !== "") {
-                $coursenamelike1 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike1', false)." ) ";
-                $coursenamelike2 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike2', false)." ) ";
+                $coursenamelike1 = " ( " . $DB->sql_like('c.fullname', ':coursenamelike1', false) . " ) ";
+                $coursenamelike2 = " ( " . $DB->sql_like('c.fullname', ':coursenamelike2', false) . " ) ";
                 array_push($whereclausearray1, $coursenamelike1);
                 array_push($whereclausearray2, $coursenamelike2);
                 $params['coursenamelike1'] = $coursename;
                 $params['coursenamelike2'] = $coursename;
             } else {
-                $coursenamelike1 = " ( ".$DB->sql_like('c.fullname', ':coursenamelike1', false)." ) ";
+                $coursenamelike1 = " ( " . $DB->sql_like('c.fullname', ':coursenamelike1', false) . " ) ";
                 array_push($whereclausearray1, $coursenamelike1);
                 $params['coursenamelike1'] = $coursename;
             }
@@ -94,14 +95,14 @@ class addtional_settings_helper {
 
         if ($quizname !== "") {
             if ($username !== "") {
-                $quiznamelike1 = " ( ".$DB->sql_like('q.name', ':quiznamelike1', false)." ) ";
-                $quiznamelike2 = " ( ".$DB->sql_like('q.name', ':quiznamelike2', false)." ) ";
+                $quiznamelike1 = " ( " . $DB->sql_like('q.name', ':quiznamelike1', false) . " ) ";
+                $quiznamelike2 = " ( " . $DB->sql_like('q.name', ':quiznamelike2', false) . " ) ";
                 array_push($whereclausearray1, $quiznamelike1);
                 array_push($whereclausearray2, $quiznamelike2);
                 $params['quiznamelike1'] = $quizname;
                 $params['quiznamelike2'] = $quizname;
             } else {
-                $quiznamelike1 = " ( ".$DB->sql_like('q.name', ':quiznamelike1', false)." ) ";
+                $quiznamelike1 = " ( " . $DB->sql_like('q.name', ':quiznamelike1', false) . " ) ";
                 array_push($whereclausearray1, $quiznamelike1);
                 $params['quiznamelike1'] = $quizname;
             }
@@ -113,27 +114,27 @@ class addtional_settings_helper {
         if ($totalclausecount > 0) {
             if ($secondclausecount > 0) {
                 $andjoin1 = implode(" AND ", $whereclausearray1);
-                $andjoin2 = implode( " AND ", $whereclausearray2);
-                $whereclause = " (".$andjoin1.") OR (".$andjoin2.") ";
+                $andjoin2 = implode(" AND ", $whereclausearray2);
+                $whereclause = " (" . $andjoin1 . ") OR (" . $andjoin2 . ") ";
             } else {
                 $andjoin1 = implode(" AND ", $whereclausearray1);
-                $whereclause = " (".$andjoin1.")";
+                $whereclause = " (" . $andjoin1 . ")";
             }
         } else {
             $sqlexecuted = array();
             return $sqlexecuted;
         }
 
-        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot,".
-        " e.quizid as quizid, e.courseid as courseid, e.timecreated as timecreated,".
-        " u.firstname as firstname, u.lastname as lastname,".
-        " u.email as email, c.fullname as coursename, q.name as quizname".
-        " FROM  {quizaccess_invigilator_logs} e ".
-        " INNER JOIN {user} u  ON u.id = e.userid INNER JOIN {course} c  ON c.id = e.courseid ".
-        " INNER JOIN {course_modules} cm  ON cm.id = e.cmid INNER JOIN {quiz} q  ON q.id = e.quizid".
-        " WHERE $whereclause";
+        $sql = "SELECT e.id as reportid, e.userid as studentid, e.screenshot as screenshot," .
+            " e.quizid as quizid, e.courseid as courseid, e.timecreated as timecreated," .
+            " u.firstname as firstname, u.lastname as lastname," .
+            " u.email as email, c.fullname as coursename, q.name as quizname" .
+            " FROM  {quizaccess_invigilator_logs} e " .
+            " INNER JOIN {user} u  ON u.id = e.userid INNER JOIN {course} c  ON c.id = e.courseid " .
+            " INNER JOIN {course_modules} cm  ON cm.id = e.cmid INNER JOIN {quiz} q  ON q.id = e.quizid" .
+            " WHERE $whereclause";
 
-        $sqlexecuted = $DB->get_recordset_sql($sql, $params);
+        $sqlexecuted = $DB->get_records_sql($sql, $params);
         return $sqlexecuted;
     }
 
@@ -143,7 +144,7 @@ class addtional_settings_helper {
      * @param object $filerow The id of the quiz.
      * @return void
      */
-    public function deletefile ($filerow) {
+    public function deletefile($filerow) {
         $fs = get_file_storage();
         $fileinfo = array(
             'component' => 'quizaccess_invigilator',
@@ -151,11 +152,18 @@ class addtional_settings_helper {
             'itemid' => $filerow->itemid,               // Usually = ID of row in table.
             'contextid' => $filerow->contextid, // ID of context.
             'filepath' => '/',           // Any path beginning and ending in /.
-            'filename' => $filerow->filename); // Any filename.
+            'filename' => $filerow->filename
+        ); // Any filename.
 
         // Get file.
-        $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
-            $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
+        $file = $fs->get_file(
+            $fileinfo['contextid'],
+            $fileinfo['component'],
+            $fileinfo['filearea'],
+            $fileinfo['itemid'],
+            $fileinfo['filepath'],
+            $fileinfo['filename']
+        );
 
         // Delete it if it exists.
         if ($file) {
@@ -169,12 +177,12 @@ class addtional_settings_helper {
      * @param int $courseid The id of the course.
      * @return array
      */
-    public function searchssbycourseid ($courseid) {
+    public function searchssbycourseid($courseid) {
         global $DB;
         $sql = "SELECT * FROM  {quizaccess_invigilator_logs} e WHERE e.courseid = :courseid";
         $params = array();
         $params['courseid'] = $courseid;
-        $sqlexecuted = $DB->get_recordset_sql($sql, $params);
+        $sqlexecuted = $DB->get_records_sql($sql, $params);
         return $sqlexecuted;
     }
 
@@ -184,12 +192,12 @@ class addtional_settings_helper {
      * @param int $quizid The id of the quiz.
      * @return array
      */
-    public function searchssbyquizid ($quizid) {
+    public function searchssbyquizid($quizid) {
         global $DB;
         $sql = "SELECT * FROM  {quizaccess_invigilator_logs} e WHERE e.quizid = :quizid";
         $params = array();
         $params['quizid'] = $quizid;
-        $sqlexecuted = $DB->get_recordset_sql($sql, $params);
+        $sqlexecuted = $DB->get_records_sql($sql, $params);
         return $sqlexecuted;
     }
 
@@ -200,7 +208,7 @@ class addtional_settings_helper {
      * @param string $deleteidstring The id of the quiz.
      * @return void
      */
-    public function deletesslogs ($deleteidstring) {
+    public function deletesslogs($deleteidstring) {
         global $DB;
         $deleteids = explode(",", $deleteidstring);
         if (count($deleteids) > 0) {
@@ -215,8 +223,8 @@ class addtional_settings_helper {
                 $filename = end($patharray);
 
                 $DB->delete_records('quizaccess_invigilator_logs', array('id' => $id));
-                $filesql = 'SELECT * FROM {files} WHERE component = "quizaccess_invigilator" AND filearea = "picture"'.
-                ' AND filename = :filename';
+                $filesql = 'SELECT * FROM {files} WHERE component = "quizaccess_invigilator" AND filearea = "picture"' .
+                    ' AND filename = :filename';
                 $params = array();
                 $params["filename"] = $filename;
                 $usersfiles = $DB->get_records_sql($filesql, $params);
@@ -226,5 +234,4 @@ class addtional_settings_helper {
             }
         }
     }
-
 }
