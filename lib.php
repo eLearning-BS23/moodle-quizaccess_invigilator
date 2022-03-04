@@ -50,15 +50,3 @@ function quizaccess_invigilator_pluginfile($course, $cm, $context, $filearea, $a
     }
     send_stored_file($file, 0, 0, $forcedownload, $options);
 }
-
-/**
- * Get invigilator settings values.
- *
- * @param string $settingtype the settingstype.
- * @return string.
- * @throws dml_exception
- */
-function quizaccess_invigilator_get_invigilator_settings($settingtype) {
-    // Get the setting value from the 'config_plugins' table.
-    return get_config('quizaccess_invigilator', $settingtype);
-}

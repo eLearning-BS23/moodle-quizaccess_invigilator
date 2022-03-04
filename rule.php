@@ -96,8 +96,8 @@ class quizaccess_invigilator extends quiz_access_rule_base
     public function add_preflight_check_form_fields(mod_quiz_preflight_check_form $quizform, MoodleQuickForm $mform, $attemptid) {
         global $PAGE;
         $coursedata = $this->get_courseid_cmid_from_preflight_form();
-        $screenshotdelay = quizaccess_invigilator_get_invigilator_settings('screenshotdelay');
-        $screenshotwidth = quizaccess_invigilator_get_invigilator_settings('screenshotwidth');
+        $screenshotdelay = get_config('quizaccess_invigilator', 'screenshotdelay');
+        $screenshotwidth = get_config('quizaccess_invigilator', 'screenshotwidth');
 
         $record = array();
         $record["courseid"] = (int)$coursedata['courseid'];
