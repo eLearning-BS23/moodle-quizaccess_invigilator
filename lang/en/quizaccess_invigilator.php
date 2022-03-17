@@ -24,6 +24,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Invigilator';
+$string['quizaccess_invigilator'] = 'quizaccess invigilator';
 $string['setting:screenshotdelay'] = "The delay between screenshots in seconds.";
 $string['setting:screenshotdelay_desc'] = "Given value will be the delay in seconds between each screenshot";
 $string['setting:screenshotwidth'] = "The width of the screenshot image in pixel.";
@@ -67,6 +68,7 @@ $string['imgdlt'] = 'Images deleted!';
 $string['invigilator:summery'] = 'Invigilator Summary Report';
 $string['invigilator:report'] = 'Invigilator Report';
 
+$string['privacy:core_files'] = 'quizaccess_invigilator Screenshot images';
 $string['privacy:metadata:core_files'] = 'This plugin stores screenshots of user\'s screenshare during taking quiz.';
 $string['privacy:metadata:quizaccess_invigilator_logs'] = 'Stores all validations for reporting';
 $string['privacy:metadata:quizaccess_invigilator_logs:userid'] = 'THe ID of user in quizaccess_invigilator_logs';
